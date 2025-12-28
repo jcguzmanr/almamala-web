@@ -1,47 +1,63 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import ProductosList from "@/components/productos/ProductosList";
 import CartButton from "@/components/cart/CartButton";
 import PiscoTabs from "@/components/productos/PiscoTabs";
+import { PiscoTabsProvider } from "@/components/productos/PiscoTabsContext";
 
 export default function Home() {
+  const [isTabsSticky, setIsTabsSticky] = useState(false);
+
   return (
-    <main className="flex-1">
-      {/* Header con carrito */}
-      <header className="bg-alma-verde-profundo/90 backdrop-blur-sm border-b border-alma-dorado-oscuro/20 sticky top-0 z-10">
-        <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
-          <a href="/" className="flex items-center">
+    <PiscoTabsProvider>
+      <main className="flex-1">
+        {/* Header con carrito */}
+        <header className="bg-alma-verde-profundo/90 backdrop-blur-sm border-b border-alma-dorado-oscuro/20 sticky top-0 z-10">
+          <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center gap-4">
+            <a href="/" className="flex items-center flex-shrink-0">
+              <Image
+                src="/images/logo_am.svg"
+                alt="Alma Mala"
+                width={145}
+                height={36}
+                className="h-8 md:h-9 w-auto"
+                priority
+              />
+            </a>
+            {/* Tabs sticky en la misma fila */}
+            {isTabsSticky && (
+              <div className="flex-1 flex justify-center">
+                <PiscoTabs renderInHeader={true} />
+              </div>
+            )}
+            <div className="flex-shrink-0">
+              <CartButton />
+            </div>
+          </div>
+        </header>
+
+        <div className="max-w-6xl mx-auto py-8 px-4 md:px-8">
+          {/* Logo grande */}
+          <div className="flex justify-center mb-8">
             <Image
               src="/images/logo_am.svg"
               alt="Alma Mala"
-              width={145}
-              height={36}
-              className="h-8 md:h-9 w-auto"
+              width={200}
+              height={50}
+              className="w-32 md:w-40 h-auto"
               priority
             />
-          </a>
-          <CartButton />
+          </div>
+
+          {/* Tabs de navegación */}
+          <PiscoTabs onStickyChange={setIsTabsSticky} />
+
+          {/* Catálogo */}
+          <ProductosList />
         </div>
-      </header>
-
-      <div className="max-w-6xl mx-auto py-8 px-4 md:px-8">
-        {/* Logo grande */}
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/images/logo_am.svg"
-            alt="Alma Mala"
-            width={200}
-            height={50}
-            className="w-32 md:w-40 h-auto"
-            priority
-          />
-        </div>
-
-        {/* Tabs de navegación */}
-        <PiscoTabs />
-
-        {/* Catálogo */}
-        <ProductosList />
-      </div>
-    </main>
+      </main>
+    </PiscoTabsProvider>
   );
 }
