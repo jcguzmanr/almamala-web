@@ -63,7 +63,7 @@ export default function CartItem({ item }: CartItemProps) {
         <div className="flex items-center gap-2">
           <button
             onClick={handleDecrease}
-            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-claro/20 transition-colors text-alma-dorado-oscuro"
+            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-oscuro hover:border-alma-dorado-oscuro hover:text-alma-verde-profundo transition-all duration-200 text-alma-dorado-oscuro"
             aria-label="Disminuir cantidad"
           >
             <Minus size={16} />
@@ -71,7 +71,7 @@ export default function CartItem({ item }: CartItemProps) {
           <span className="w-8 text-center font-semibold text-alma-verde-profundo">{item.cantidad}</span>
           <button
             onClick={handleIncrease}
-            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-claro/20 transition-colors text-alma-dorado-oscuro"
+            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-oscuro hover:border-alma-dorado-oscuro hover:text-alma-verde-profundo transition-all duration-200 text-alma-dorado-oscuro"
             aria-label="Aumentar cantidad"
           >
             <Plus size={16} />

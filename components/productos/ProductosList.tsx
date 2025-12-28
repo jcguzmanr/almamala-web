@@ -12,13 +12,15 @@ export default function ProductosList() {
 
   useEffect(() => {
     try {
+      console.log("Loading productos...");
       const productosData = getProductos();
+      console.log("Productos loaded:", productosData);
       setProductos(productosData);
       setLoading(false);
     } catch (err) {
+      console.error("Error loading productos:", err);
       setError("Error al cargar los productos");
       setLoading(false);
-      console.error("Error loading productos:", err);
     }
   }, []);
 

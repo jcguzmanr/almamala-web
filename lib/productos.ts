@@ -18,8 +18,8 @@ export function getProductos(): Producto[] {
   }
 
   // Validar estructura básica
-  if (!productosDataTyped.productos || !Array.isArray(productosDataTyped.productos)) {
-    console.error("Error: productos.json no tiene la estructura esperada");
+  if (!productosDataTyped?.productos || !Array.isArray(productosDataTyped.productos)) {
+    console.error("Error: productos.json no tiene la estructura esperada", productosDataTyped);
     return [];
   }
 
@@ -34,6 +34,8 @@ export function getProductos(): Producto[] {
       producto.items.length > 0
     );
   });
+
+  console.log("Productos válidos encontrados:", productosValidos.length);
 
   // Guardar en cache
   productosCache = productosValidos;

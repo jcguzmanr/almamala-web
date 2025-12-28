@@ -5,6 +5,11 @@
       "tipoPisco" : "Pisco Italia",
       "descripcion" : "Destilado meticulosamente de uvas Italia seleccionadas a mano, nuestro Pisco Italia es el toque perfecto de autenticidad y encanto para tus cócteles y comidas",
       "disfrutaloEn" : "En sours, chilcanos y comidas",
+      "nose" : "Extremadamente complejo, con una amplia variedad de aromas a madreselva, pétalos de rosa, hibisco, frutas tropicales, mango, maracuyá, melón, piña madura, notas cítricas.",
+      "taste" : "Guayaba, maracuyá, melón, melón verde, piña, manzana verde, miel, uva pasa dorada.",
+      "finish" : "Bien estructurado, equilibrado, suave, persistente, sofisticado y sensual.",
+      "abv" : "41.3%",
+      "cocktails" : "Sours, Chilcanos, Pisco Sour",
       "items" : [
         {
           "volumen" : "500 ML",
@@ -23,6 +28,11 @@
       "tipoPisco" : "Pisco Quebranta",
       "descripcion" : "Producido a partir de la resistente uva Quebranta, nuestro Pisco Quebranta es el balance perfecto entre un sabor fuerte y un aroma sutil, la elección perfecta para añadir carácter y versatilidad a tus cócteles y comidas",
       "disfrutaloEn" : "En sours, chilcanos y más",
+      "nose" : "Aromas sutiles y elegantes con notas de frutas blancas, flores de azahar y un toque terroso característico de la uva Quebranta.",
+      "taste" : "Sabor fuerte y definido con notas de frutas maduras, hierbas frescas y un equilibrio perfecto entre dulzura y acidez.",
+      "finish" : "Persistente y estructurado, con un final limpio que invita a otro sorbo.",
+      "abv" : "42%",
+      "cocktails" : "Pisco Sour, Chilcano, Pisco Punch",
       "items" : [
         {
           "volumen" : "500 ML",
@@ -41,6 +51,11 @@
       "tipoPisco" : "Mosto Verde",
       "descripcion" : "Producido cuidadosamente para preservar azúcares naturales, es un destilado de alto volumen con una suavidad incomparable. Ideal para disfrutar solo o como el ingrediente estrella de tus cócteles",
       "disfrutaloEn" : "Solo, en sours, chilcanos y más",
+      "nose" : "Aromas delicados y refinados con notas florales, frutas blancas frescas y un toque de miel silvestre. Preserva los azúcares naturales de la uva.",
+      "taste" : "Suave y sedoso en boca, con notas de frutas tropicales, melocotón y un dulzor natural equilibrado. Suavidad incomparable.",
+      "finish" : "Largo y elegante, con una suavidad excepcional que perdura en el paladar. Ideal para disfrutar solo.",
+      "abv" : "43%",
+      "cocktails" : "Solo, Pisco Sour Premium, Chilcano de Lujo",
       "items" : [
         {
           "volumen" : "500 ML",
@@ -59,6 +74,11 @@
       "tipoPisco" : "Damajuana",
       "descripcion" : "Diseño tradicional y de gran capacidad representa una opción excelente para los amantes del pisco. Nuestra Damajuana se convierte sin duda en el alma de cualquier reunión, aportando el toque especial que solo Alma Mala sabe dar.",
       "disfrutaloEn" : "En sours, chilcanos y comidas",
+      "nose" : "Aromas intensos y complejos que reflejan la esencia del pisco peruano tradicional. Diseño tradicional y de gran capacidad.",
+      "taste" : "Sabor robusto y auténtico, perfecto para compartir en grandes ocasiones. El alma de cualquier reunión.",
+      "finish" : "Persistente y memorable, ideal para celebrar momentos especiales. Aporta el toque especial que solo Alma Mala sabe dar.",
+      "abv" : "41%",
+      "cocktails" : "Pisco Sour, Chilcano, Cocteles de gran volumen",
       "items" : [
         {
           "volumen" : "Italia",

@@ -1,12 +1,19 @@
 import Image from "next/image";
-import ProductosList from "@/components/productos/ProductosList";
 import CartButton from "@/components/cart/CartButton";
-import PiscoTabs from "@/components/productos/PiscoTabs";
+import BetaTag from "@/components/BetaTag";
+import { getPageContent } from "@/lib/pages-content";
+import { notFound } from "next/navigation";
 
-export default function Home() {
+export default function GiftCardPage() {
+  const pageContent = getPageContent("gift-card");
+
+  if (!pageContent) {
+    notFound();
+  }
+
   return (
     <main className="flex-1">
-      {/* Header con carrito */}
+      {/* Header */}
       <header className="bg-alma-verde-profundo/90 backdrop-blur-sm border-b border-alma-dorado-oscuro/20 sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4 md:px-8 py-4 flex justify-between items-center">
           <a href="/" className="flex items-center">
@@ -23,25 +30,18 @@ export default function Home() {
         </div>
       </header>
 
-      <div className="max-w-6xl mx-auto py-8 px-4 md:px-8">
-        {/* Logo grande */}
-        <div className="flex justify-center mb-8">
-          <Image
-            src="/images/logo_am.svg"
-            alt="Alma Mala"
-            width={200}
-            height={50}
-            className="w-32 md:w-40 h-auto"
-            priority
-          />
+      <div className="max-w-4xl mx-auto py-8 px-4 md:px-8">
+        <BetaTag />
+        <h1 className="text-3xl md:text-4xl font-bold text-alma-dorado-claro mb-6">
+          {pageContent.title}
+        </h1>
+        <div className="prose prose-invert max-w-none">
+          <div className="text-alma-dorado-oscuro/90 whitespace-pre-line leading-relaxed">
+            {pageContent.content}
+          </div>
         </div>
-
-        {/* Tabs de navegación */}
-        <PiscoTabs />
-
-        {/* Catálogo */}
-        <ProductosList />
       </div>
     </main>
   );
 }
+

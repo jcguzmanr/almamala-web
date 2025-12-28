@@ -63,7 +63,7 @@ export default function PresentacionItem({ presentacion, producto }: Presentacio
   };
 
   return (
-    <div className="flex flex-col items-center gap-2 p-4 border border-alma-dorado-oscuro/30 rounded-lg bg-white/90 backdrop-blur-sm hover:shadow-lg hover:border-alma-dorado-claro/50 transition-all">
+    <div className="flex flex-col items-center gap-2 p-4 border border-alma-dorado-oscuro/30 rounded-lg bg-white/20 hover:shadow-lg hover:border-alma-dorado-claro/50 transition-all" style={{ backdropFilter: 'blur(12px) saturate(150%)' }}>
       <div className="relative w-24 h-32 md:w-32 md:h-40">
         <Image
           src={imagenPath}
@@ -82,7 +82,7 @@ export default function PresentacionItem({ presentacion, producto }: Presentacio
           <button
             onClick={handleDecrease}
             disabled={cantidad <= 1 || adding}
-            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-claro/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-alma-dorado-oscuro"
+            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-oscuro hover:border-alma-dorado-oscuro hover:text-alma-verde-profundo disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-alma-dorado-oscuro"
             aria-label="Disminuir cantidad"
           >
             <Minus size={16} />
@@ -94,12 +94,13 @@ export default function PresentacionItem({ presentacion, producto }: Presentacio
             onChange={handleCantidadChange}
             disabled={adding}
             className="w-16 text-center border border-alma-dorado-oscuro/40 rounded-lg px-2 py-1 text-sm md:text-base font-semibold focus:outline-none focus:ring-2 focus:ring-alma-dorado-oscuro disabled:opacity-50 text-alma-verde-profundo bg-white"
+            style={{ backdropFilter: 'blur(12px) saturate(150%)' }}
             aria-label="Cantidad"
           />
           <button
             onClick={handleIncrease}
             disabled={adding}
-            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-claro/20 disabled:opacity-50 disabled:cursor-not-allowed transition-colors text-alma-dorado-oscuro"
+            className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-oscuro hover:border-alma-dorado-oscuro hover:text-alma-verde-profundo disabled:opacity-50 disabled:cursor-not-allowed transition-all duration-200 text-alma-dorado-oscuro"
             aria-label="Aumentar cantidad"
           >
             <Plus size={16} />

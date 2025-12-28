@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
+import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
   title: "Alma Mala - Pisco Premium",
@@ -14,8 +15,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es">
-      <body className="antialiased text-alma-dorado-oscuro">
-        <CartProvider>{children}</CartProvider>
+      <body className="antialiased text-alma-dorado-oscuro flex flex-col min-h-screen">
+        <CartProvider>
+          {children}
+          <Footer />
+        </CartProvider>
       </body>
     </html>
   );

@@ -9,6 +9,11 @@ export type Producto = {
   tipoPisco: string;
   descripcion: string;
   disfrutaloEn: string;
+  nose?: string;
+  taste?: string;
+  finish?: string;
+  abv?: string;
+  cocktails?: string;
   items: Presentacion[];
 };
 
