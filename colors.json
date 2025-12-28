@@ -1,0 +1,41 @@
+{
+    "almaMala": {
+      "greens": {
+        "verdeMalaProfundo": {
+          "hex": "#062F3C",
+          "role": "primary",
+          "description": "Identidad principal, lujo, noche, origen"
+        },
+        "verdeMalaSeco": {
+          "hex": "#1F4E4A",
+          "role": "secondary",
+          "description": "Flat, editorial, interfaces limpias y bloques de contenido"
+        }
+      },
+      "golds": {
+        "doradoPiscoOscuro": {
+          "hex": "#D6AA4C",
+          "role": "primary-accent",
+          "description": "CTA, logo, acentos premium"
+        },
+        "doradoPiscoClaro": {
+          "hex": "#FFD77A",
+          "role": "secondary-accent",
+          "description": "Highlights, hover states, microdetalles"
+        }
+      },
+      "neutrals": {
+        "negroCarbon": {
+          "hex": "#1A1A1A",
+          "role": "dark-neutral",
+          "description": "Fondos oscuros, texto sobre dorados"
+        },
+        "blancoHueso": {
+          "hex": "#F6F4EF",
+          "role": "light-neutral",
+          "description": "Fondos claros, lectura, fichas de producto"
+        }
+      }
+    }
+  }
+  

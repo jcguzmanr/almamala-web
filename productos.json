@@ -1,0 +1,81 @@
+{
+  "productos" : [
+    {
+      "categoria" : "Italia",
+      "tipoPisco" : "Pisco Italia",
+      "descripcion" : "Destilado meticulosamente de uvas Italia seleccionadas a mano, nuestro Pisco Italia es el toque perfecto de autenticidad y encanto para tus cócteles y comidas",
+      "disfrutaloEn" : "En sours, chilcanos y comidas",
+      "items" : [
+        {
+          "volumen" : "500 ML",
+          "precio" : "S/ 22",
+          "imagen" : "500ML"
+        },
+        {
+          "volumen" : "750 ML",
+          "precio" : "S/ 30",
+          "imagen" : "750ML"
+        }
+      ]
+    },
+    {
+      "categoria" : "Quebranta",
+      "tipoPisco" : "Pisco Quebranta",
+      "descripcion" : "Producido a partir de la resistente uva Quebranta, nuestro Pisco Quebranta es el balance perfecto entre un sabor fuerte y un aroma sutil, la elección perfecta para añadir carácter y versatilidad a tus cócteles y comidas",
+      "disfrutaloEn" : "En sours, chilcanos y más",
+      "items" : [
+        {
+          "volumen" : "500 ML",
+          "precio" : "S/ 22",
+          "imagen" : "500ML"
+        },
+        {
+          "volumen" : "750 ML",
+          "precio" : "S/ 30",
+          "imagen" : "750ML"
+        }
+      ]
+    },
+    {
+      "categoria" : "Mosto Verde",
+      "tipoPisco" : "Mosto Verde",
+      "descripcion" : "Producido cuidadosamente para preservar azúcares naturales, es un destilado de alto volumen con una suavidad incomparable. Ideal para disfrutar solo o como el ingrediente estrella de tus cócteles",
+      "disfrutaloEn" : "Solo, en sours, chilcanos y más",
+      "items" : [
+        {
+          "volumen" : "500 ML",
+          "precio" : "S/ 35",
+          "imagen" : "500ML"
+        },
+        {
+          "volumen" : "750 ML",
+          "precio" : "S/ 50",
+          "imagen" : "750ML"
+        }
+      ]
+    },
+    {
+      "categoria" : "Damajuanas 4L",
+      "tipoPisco" : "Damajuana",
+      "descripcion" : "Diseño tradicional y de gran capacidad representa una opción excelente para los amantes del pisco. Nuestra Damajuana se convierte sin duda en el alma de cualquier reunión, aportando el toque especial que solo Alma Mala sabe dar.",
+      "disfrutaloEn" : "En sours, chilcanos y comidas",
+      "items" : [
+        {
+          "volumen" : "Italia",
+          "precio" : "S/ 105",
+          "imagen" : "DAMAJUANA"
+        },
+        {
+          "volumen" : "Mosto Verde",
+          "precio" : "S/ 180",
+          "imagen" : "DAMAJUANA"
+        },
+        {
+          "volumen" : "Quebranta",
+          "precio" : "S/ 105",
+          "imagen" : "DAMAJUANA"
+        }
+      ]
+    }
+  ]
+}
