@@ -91,13 +91,13 @@ export default function InfoMessages() {
                   <div className="flex gap-3 items-center">
                     <span className="font-bold text-alma-dorado-claro flex-shrink-0">2.</span>
                     <p className="text-sm md:text-base">
-                      Ingresa a tu aplicativo "YAPE", presionas donde dice "ESCANEAR QR" y luego "SUBIR UNA IMAGEN CON QR" (ahí subes la captura que guardaste).
+                      Ingresa a tu aplicativo &quot;YAPE&quot;, presionas donde dice &quot;ESCANEAR QR&quot; y luego &quot;SUBIR UNA IMAGEN CON QR&quot; (ahí subes la captura que guardaste).
                     </p>
                   </div>
                   <div className="flex gap-3 items-center">
                     <span className="font-bold text-alma-dorado-claro flex-shrink-0">3.</span>
                     <p className="text-sm md:text-base">
-                      Realizas el YAPE a nombre de <span className="font-semibold">"LUIS LOA*"</span>.
+                      Realizas el YAPE a nombre de <span className="font-semibold">&quot;LUIS LOA*&quot;</span>.
                     </p>
                   </div>
                 </div>

@@ -105,7 +105,7 @@ export default function PiscoTabs({ onStickyChange, renderInHeader = false }: Pi
         observerRef.current.disconnect();
       }
     };
-  }, []);
+  }, [onStickyChange, setActiveTab]);
 
   const handleTabClick = (tabId: string) => {
     setActiveTab(tabId);
