@@ -248,3 +248,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un usuario puede agregar productos al carrito, seleccionar opción de envío, hacer click en "Finalizar pedido en WhatsApp", y WhatsApp se abre automáticamente con un mensaje completo y estructurado que incluye todos los productos, el orderId, y los totales, listo para enviar. El pedido queda registrado internamente antes de abrir WhatsApp.
 
 
+

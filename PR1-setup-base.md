@@ -168,3 +168,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un desarrollador puede clonar el repo, ejecutar `npm install` y `npm run dev`, y ver una página Next.js funcionando con Tailwind CSS y shadcn/ui listos para usar.
 
 
+

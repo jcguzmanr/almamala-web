@@ -259,3 +259,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un revisor puede abrir `textocarrito.md` y la UI del carrito/checkout, y verificar que cada texto coincide exactamente palabra por palabra, sin excepciones ni textos adicionales inventados.
 
 
+

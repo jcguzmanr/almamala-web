@@ -79,3 +79,4 @@ export async function GET() {
   return NextResponse.json({ ok: false, error: "Método no permitido" }, { status: 405 });
 }
 
+

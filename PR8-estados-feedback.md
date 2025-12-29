@@ -280,3 +280,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un usuario puede navegar todo el flujo (catálogo → carrito → checkout → WhatsApp) y en cada paso tiene feedback claro sobre lo que está pasando: loading durante operaciones, mensajes de error claros si algo falla, mensajes de éxito cuando algo funciona, y mensajes informativos que explican el proceso. La experiencia es fluida, profesional y sin fricciones innecesarias.
 
 
+

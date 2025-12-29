@@ -67,3 +67,4 @@ Este proyecto se desarrolla siguiendo PRs incrementales documentados:
 
 Ver archivos `PR*.md` para detalles de cada PR.
 
+

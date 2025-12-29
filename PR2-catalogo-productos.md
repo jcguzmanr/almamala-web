@@ -201,3 +201,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un usuario puede abrir la web en su móvil y ver claramente todos los productos Alma Mala disponibles con sus presentaciones y precios, sin errores y con buen diseño visual.
 
 
+

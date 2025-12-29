@@ -17,3 +17,4 @@ export function generateOrderId(): string {
   return `AM-${year}${month}${day}-${hours}${minutes}${seconds}-${random}`;
 }
 
+

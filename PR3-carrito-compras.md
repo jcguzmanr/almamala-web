@@ -239,3 +239,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un usuario puede navegar el catálogo, agregar varios productos con diferentes presentaciones al carrito, modificar cantidades, y al recargar la página el carrito se mantiene intacto con todos los cálculos correctos.
 
 
+

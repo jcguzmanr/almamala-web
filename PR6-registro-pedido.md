@@ -255,3 +255,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un desarrollador puede hacer un POST a `/api/orders` con un `OrderPayload` válido, recibir un `orderId` único en la respuesta, y ver el resumen del pedido en los logs del servidor (o email si está configurado). El pedido queda registrado internamente y listo para ser usado en el mensaje de WhatsApp.
 
 
+

@@ -251,3 +251,4 @@ Este PR se considera aprobado cuando:
 **Criterio de éxito:** Un desarrollador puede llamar `buildOrderPayload(cartItems, shippingOption, couponCode)` y obtener un objeto `OrderPayload` válido, serializable y listo para enviar al backend y formatear para WhatsApp, con todas las validaciones pasando correctamente.
 
 
+
