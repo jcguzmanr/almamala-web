@@ -122,30 +122,67 @@ export default function PiscoTabs({ onStickyChange, renderInHeader = false }: Pi
     }
   };
 
-  const renderTabs = () => (
-    <div className="inline-flex bg-alma-verde-seco/20 backdrop-blur-sm rounded-full p-1 border border-alma-dorado-oscuro/40 shadow-sm">
-      {tabs.map((tab) => {
-        const isActive = activeTab === tab.id;
-        return (
-          <button
-            key={tab.id}
-            onClick={() => handleTabClick(tab.id)}
-            className={`
-              px-6 py-3 transition-all duration-200 ease-in-out
-              flex items-center gap-2 font-medium text-sm md:text-base
-              ${
-                isActive
-                  ? "bg-alma-verde-seco/40 text-alma-dorado-claro shadow-sm border border-alma-dorado-oscuro/60 rounded-full"
-                  : "text-alma-dorado-oscuro/80 hover:text-alma-dorado-claro hover:bg-alma-verde-seco/10 border-0"
-              }
-            `}
-          >
-            <span>{tab.label}</span>
-          </button>
-        );
-      })}
-    </div>
-  );
+  const renderTabs = () => {
+    // Si está en el header, usar contenedor centrado con efecto frosted
+    if (renderInHeader) {
+      return (
+        <div className="w-full flex justify-center">
+          <div className="inline-flex bg-white/10 backdrop-blur-md rounded-full p-0.5 border border-white/20 shadow-lg overflow-x-auto scrollbar-hide max-w-full">
+            <div className="flex min-w-max px-2 gap-1.5">
+              {tabs.map((tab) => {
+                const isActive = activeTab === tab.id;
+                return (
+                  <button
+                    key={tab.id}
+                    onClick={() => handleTabClick(tab.id)}
+                    className={`
+                      px-3 md:px-4 py-1.5 transition-all duration-200 ease-in-out
+                      flex items-center gap-2 font-medium text-xs md:text-sm whitespace-nowrap flex-shrink-0
+                      ${
+                        isActive
+                          ? "bg-white/20 text-alma-dorado-claro shadow-sm border border-alma-dorado-oscuro/60 rounded-full"
+                          : "text-alma-dorado-oscuro/80 hover:text-alma-dorado-claro hover:bg-white/10 border-0"
+                      }
+                    `}
+                  >
+                    <span>{tab.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      );
+    }
+    
+    // Tabs originales con fondo verde
+    return (
+      <div className="inline-flex bg-alma-verde-seco/20 backdrop-blur-sm rounded-full p-0.5 border border-alma-dorado-oscuro/40 shadow-sm">
+        <div className="flex">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => handleTabClick(tab.id)}
+                className={`
+                  px-3 md:px-4 py-1.5 transition-all duration-200 ease-in-out
+                  flex items-center gap-2 font-medium text-xs md:text-sm whitespace-nowrap flex-shrink-0
+                  ${
+                    isActive
+                      ? "bg-alma-verde-seco/40 text-alma-dorado-claro shadow-sm border border-alma-dorado-oscuro/60 rounded-full"
+                      : "text-alma-dorado-oscuro/80 hover:text-alma-dorado-claro hover:bg-alma-verde-seco/10 border-0"
+                  }
+                `}
+              >
+                <span>{tab.label}</span>
+              </button>
+            );
+          })}
+        </div>
+      </div>
+    );
+  };
 
   // Si se renderiza en el header, solo retornar los tabs sin contenedor
   if (renderInHeader) {
