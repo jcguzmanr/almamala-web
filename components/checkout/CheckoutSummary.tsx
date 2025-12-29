@@ -39,7 +39,7 @@ export default function CheckoutSummary({
     if (shippingOption !== "regular" || !limaZone) {
       return 0;
     }
-    const zonePrice = ZONE_PRICES[limaZone];
+    const zonePrice = ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>];
     return zonePrice ?? 0;
   };
   
@@ -113,7 +113,7 @@ export default function CheckoutSummary({
               <div className="flex justify-between mb-1">
                 <span className="text-gray-900 font-medium">{CART_TEXTS.totals.shipping.label}</span>
                 <span className="font-semibold text-gray-900">
-                  {shippingOption === "regular" && limaZone && ZONE_PRICES[limaZone] === null
+                  {shippingOption === "regular" && limaZone && ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>] === null
                     ? "Consultar"
                     : formatPrice(shippingCost)}
                 </span>

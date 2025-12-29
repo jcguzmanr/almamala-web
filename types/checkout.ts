@@ -2,12 +2,13 @@ export type ShippingOption = "regular" | "gratuito" | "retiro";
 
 export type LimaZone = "zona1" | "zona2" | "zona3" | "provincias" | null;
 
-export const ZONE_PRICES: Record<LimaZone, number | null> = {
+type LimaZoneKey = Exclude<LimaZone, null>;
+
+export const ZONE_PRICES: Record<LimaZoneKey, number | null> = {
   zona1: 15,
   zona2: 25,
   zona3: 35,
   provincias: null, // Consultar
-  null: 0,
 };
 
 export type BottleReturn = {

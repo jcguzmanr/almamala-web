@@ -51,7 +51,7 @@ function calculateShippingCost(option: ShippingOption, limaZone?: LimaZone): num
   }
 
   // Obtener precio de la zona
-  const zonePrice = ZONE_PRICES[limaZone];
+  const zonePrice = ZONE_PRICES[limaZone as Exclude<LimaZone, null>];
   
   // Si el precio es null (provincias), retornar 0 (se consultará después)
   return zonePrice ?? 0;

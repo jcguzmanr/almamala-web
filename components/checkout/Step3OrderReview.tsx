@@ -38,7 +38,7 @@ export default function Step3OrderReview({
     if (shippingOption !== "regular" || !limaZone) {
       return 0;
     }
-    const zonePrice = ZONE_PRICES[limaZone];
+    const zonePrice = ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>];
     return zonePrice ?? 0;
   };
   
@@ -156,7 +156,7 @@ export default function Step3OrderReview({
                 {shippingOption === "regular" && limaZone && (
                   <span className="text-sm text-alma-dorado-oscuro/80">
                     {limaZone === "provincias" ? "Provincias" : limaZone.toUpperCase()}:{" "}
-                    {ZONE_PRICES[limaZone] === null ? "Consultar" : formatPrice(shippingCost)}
+                    {ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>] === null ? "Consultar" : formatPrice(shippingCost)}
                   </span>
                 )}
               </div>

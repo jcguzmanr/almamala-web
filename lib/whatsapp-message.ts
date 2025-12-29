@@ -33,7 +33,7 @@ export function buildWhatsAppMessage(
     const zoneName = orderPayload.shipping.limaZone === "provincias" 
       ? "Provincias" 
       : orderPayload.shipping.limaZone.toUpperCase();
-    const zonePrice = ZONE_PRICES[orderPayload.shipping.limaZone];
+    const zonePrice = ZONE_PRICES[orderPayload.shipping.limaZone as Exclude<typeof orderPayload.shipping.limaZone, null>];
     if (zonePrice !== null) {
       message += `${zoneName}: ${formatPrice(zonePrice)}\n`;
     } else {

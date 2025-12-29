@@ -42,7 +42,7 @@ export default function Step1CartReview({
     if (shippingOption !== "regular" || !limaZone) {
       return 0;
     }
-    const zonePrice = ZONE_PRICES[limaZone];
+    const zonePrice = ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>];
     return zonePrice ?? 0;
   };
   
@@ -141,7 +141,7 @@ export default function Step1CartReview({
             <div className="flex justify-between mb-1">
               <span className="text-alma-dorado-oscuro font-medium">{CART_TEXTS.totals.shipping.label}</span>
               <span className="font-semibold text-alma-dorado-claro">
-                {shippingOption === "regular" && limaZone && ZONE_PRICES[limaZone] === null
+                {shippingOption === "regular" && limaZone && ZONE_PRICES[limaZone as Exclude<typeof limaZone, null>] === null
                   ? "Consultar"
                   : formatPrice(shippingCost)}
               </span>
