@@ -1,0 +1,41 @@
+{
+  "zones": [
+    {
+      "id": "zona1",
+      "name": "Zona 1",
+      "description": "Distritos: Pueblo Libre, San Miguel, Magdalena, Cercado, Lince, San Isidro",
+      "radius": 5000,
+      "color": "#FF6B6B",
+      "fillColor": "#FF6B6B33",
+      "price": 15
+    },
+    {
+      "id": "zona2",
+      "name": "Zona 2",
+      "description": "Distritos: Miraflores, Barranco, Surquillo, Surco, La Molina, Rimac",
+      "radius": 10000,
+      "color": "#4ECDC4",
+      "fillColor": "#4ECDC433",
+      "price": 25
+    },
+    {
+      "id": "zona3",
+      "name": "Zona 3",
+      "description": "Distritos: San Juan de Lurigancho, Los Olivos, Comas, Villa El Salvador",
+      "radius": 15000,
+      "color": "#45B7D1",
+      "fillColor": "#45B7D133",
+      "price": 35
+    },
+    {
+      "id": "provincias",
+      "name": "Otras zonas y provincias",
+      "description": "Fuera de Lima Metropolitana",
+      "radius": null,
+      "color": "#98D8C8",
+      "fillColor": "#98D8C833",
+      "price": null
+    }
+  ]
+}
+

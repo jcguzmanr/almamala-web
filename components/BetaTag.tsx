@@ -1,8 +1,8 @@
 export default function BetaTag() {
   return (
-    <div className="inline-flex items-center px-3 py-1 rounded-full bg-red-600 text-white text-xs font-bold mb-4">
-      BETA
-    </div>
+    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-alma-dorado-claro/20 text-alma-dorado-oscuro border border-alma-dorado-oscuro/30">
+      Beta
+    </span>
   );
 }
 

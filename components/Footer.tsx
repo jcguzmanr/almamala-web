@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { getWhatsAppDisplayNumber, getWhatsAppNumber } from "@/lib/app-config";
 
 export default function Footer() {
   return (
@@ -8,37 +9,26 @@ export default function Footer() {
       {/* Sección superior con información de contacto */}
       <div className="bg-alma-verde-seco/50 backdrop-blur-sm border-t border-alma-dorado-oscuro/20 py-6">
         <div className="max-w-6xl mx-auto px-4 md:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 text-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 text-sm">
             <div>
               <p className="font-semibold text-alma-dorado-claro mb-2">Dirección Depósito</p>
               <p className="text-alma-dorado-oscuro/90">Simón Bolívar 344, Pueblo Libre, Lima</p>
             </div>
             <div>
-              <p className="font-semibold text-alma-dorado-claro mb-2">Fijo</p>
-              <a
-                href="tel:016935766"
-                className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors"
-              >
-                01 693 5766
-              </a>
-            </div>
-            <div>
               <p className="font-semibold text-alma-dorado-claro mb-2">Horario</p>
               <p className="text-alma-dorado-oscuro/90">
-                Lunes a Sábado de 10AM - 8PM
-                <br />
-                Domingos de 10AM - 5PM
+                Lunes a Viernes de 10AM - 8PM
               </p>
             </div>
             <div>
               <p className="font-semibold text-alma-dorado-claro mb-2">WhatsApp Pedidos</p>
               <a
-                href="https://wa.me/51924473237"
+                href={`https://wa.me/${getWhatsAppNumber()}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors inline-flex items-center gap-1"
               >
-                <span>924 473 237</span>
+                <span>{getWhatsAppDisplayNumber()}</span>
                 <svg
                   className="w-4 h-4"
                   fill="currentColor"
@@ -76,7 +66,7 @@ export default function Footer() {
                     href="/politica"
                     className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
                   >
-                    Política
+                    Política de Privacidad
                   </Link>
                 </li>
                 <li>
@@ -90,18 +80,10 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Novedades */}
+            {/* Sostenibilidad */}
             <div>
-              <h3 className="text-alma-dorado-claro font-bold text-lg mb-4">NOVEDADES</h3>
+              <h3 className="text-alma-dorado-claro font-bold text-lg mb-4">SOSTENIBILIDAD</h3>
               <ul className="space-y-2">
-                <li>
-                  <Link
-                    href="/gift-card"
-                    className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
-                  >
-                    Gift Card
-                  </Link>
-                </li>
                 <li>
                   <Link
                     href="/descuento-botellas-retornables"
@@ -113,16 +95,24 @@ export default function Footer() {
               </ul>
             </div>
 
-            {/* Más Alma Mala */}
+            {/* Acerca de */}
             <div>
-              <h3 className="text-alma-dorado-claro font-bold text-lg mb-4">MÁS ALMA MALA</h3>
+              <h3 className="text-alma-dorado-claro font-bold text-lg mb-4">ACERCA DE</h3>
               <ul className="space-y-2">
+                <li>
+                  <Link
+                    href="/acerca-de"
+                    className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
+                  >
+                    Acerca de Alma Mala
+                  </Link>
+                </li>
                 <li>
                   <Link
                     href="/preguntas-frecuentes"
                     className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
                   >
-                    Preguntas Frecuentes acerca de Alma Mala
+                    Preguntas Frecuentes
                   </Link>
                 </li>
               </ul>
@@ -131,13 +121,13 @@ export default function Footer() {
             {/* Libro de Reclamaciones */}
             <div>
               <h3 className="text-alma-dorado-claro font-bold text-lg mb-4">
-                LIBRO DE RECLAMACIONES
+                📋
               </h3>
               <Link
                 href="/libro-reclamaciones"
                 className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm inline-block"
               >
-                Acceder al Libro de Reclamaciones
+                Libro de Reclamaciones
               </Link>
             </div>
           </div>

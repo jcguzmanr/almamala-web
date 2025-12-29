@@ -1,4 +1,4 @@
-import type { ShippingOption } from "./checkout";
+import type { ShippingOption, LimaZone } from "./checkout";
 
 export type OrderItem = {
   productoId: string;
@@ -17,6 +17,7 @@ export type OrderPayload = {
   shipping: {
     option: ShippingOption;
     cost: number;
+    limaZone?: LimaZone;
   };
   total: number;
   coupon?: {

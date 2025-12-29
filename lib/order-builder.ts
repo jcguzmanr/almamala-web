@@ -1,6 +1,7 @@
 import type { CartItem } from "@/types/cart";
 import type { OrderPayload, OrderItem, OrderMetadata } from "@/types/order";
-import type { ShippingOption } from "@/types/checkout";
+import type { ShippingOption, LimaZone } from "@/types/checkout";
+import { ZONE_PRICES } from "@/types/checkout";
 import { calculateSubtotal } from "./cart";
 
 /**
@@ -36,11 +37,24 @@ function generateOrderMetadata(): OrderMetadata {
 }
 
 /**
- * Calcula el costo de envío (0 en PMV)
+ * Calcula el costo de envío según la opción y zona seleccionada
  */
-function calculateShippingCost(option: ShippingOption): number {
-  // En PMV, el costo de envío es siempre 0
-  return 0;
+function calculateShippingCost(option: ShippingOption, limaZone?: LimaZone): number {
+  // Si no es envío regular, el costo es 0
+  if (option !== "regular") {
+    return 0;
+  }
+
+  // Si es envío regular pero no hay zona seleccionada, retornar 0
+  if (!limaZone) {
+    return 0;
+  }
+
+  // Obtener precio de la zona
+  const zonePrice = ZONE_PRICES[limaZone];
+  
+  // Si el precio es null (provincias), retornar 0 (se consultará después)
+  return zonePrice ?? 0;
 }
 
 /**
@@ -64,7 +78,8 @@ function calculateTotal(subtotal: number, shipping: number, discount: number): n
 export function buildOrderPayload(
   cartItems: CartItem[],
   shippingOption: ShippingOption | null,
-  couponCode: string | null
+  couponCode: string | null,
+  limaZone?: LimaZone
 ): OrderPayload {
   // Validar que hay items
   if (cartItems.length === 0) {
@@ -76,6 +91,11 @@ export function buildOrderPayload(
     throw new Error("Debe seleccionar una opción de envío");
   }
 
+  // Validar que si es envío regular, debe tener zona seleccionada
+  if (shippingOption === "regular" && !limaZone) {
+    throw new Error("Debe seleccionar una zona de Lima para envío regular");
+  }
+
   // Transformar items
   const orderItems: OrderItem[] = cartItems.map(formatOrderItem);
 
@@ -83,7 +103,7 @@ export function buildOrderPayload(
   const subtotal = roundToTwoDecimals(calculateSubtotal(cartItems));
 
   // Calcular shipping
-  const shippingCost = calculateShippingCost(shippingOption);
+  const shippingCost = calculateShippingCost(shippingOption, limaZone);
 
   // Calcular descuento
   const discount = calculateCouponDiscount(couponCode);
@@ -101,6 +121,7 @@ export function buildOrderPayload(
     shipping: {
       option: shippingOption,
       cost: shippingCost,
+      ...(limaZone && { limaZone }),
     },
     total,
     coupon: {

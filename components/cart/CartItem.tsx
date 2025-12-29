@@ -29,7 +29,10 @@ export default function CartItem({ item }: CartItemProps) {
   };
 
   return (
-    <div className="flex gap-4 p-4 border border-alma-dorado-oscuro/30 rounded-lg bg-alma-blanco-hueso/95 backdrop-blur-sm shadow-md">
+    <div 
+      className="flex items-center gap-4 p-4 border border-alma-dorado-oscuro/30 rounded-md bg-white/10 backdrop-blur-md shadow-lg"
+      style={{ backdropFilter: 'blur(12px) saturate(150%)' }}
+    >
       {/* Imagen */}
       <div className="relative w-20 h-24 md:w-24 md:h-32 flex-shrink-0">
         <Image
@@ -46,7 +49,7 @@ export default function CartItem({ item }: CartItemProps) {
         <h3 className="font-semibold text-base md:text-lg text-alma-dorado-oscuro mb-1">
           {item.tipoPisco}
         </h3>
-        <p className="text-sm text-alma-verde-profundo/80 mb-2">{item.volumen}</p>
+        <p className="text-sm text-alma-dorado-oscuro/80 mb-2">{item.volumen}</p>
         <p className="text-lg font-bold text-alma-dorado-claro">{formatPrice(item.precio)}</p>
       </div>
 
@@ -68,7 +71,7 @@ export default function CartItem({ item }: CartItemProps) {
           >
             <Minus size={16} />
           </button>
-          <span className="w-8 text-center font-semibold text-alma-verde-profundo">{item.cantidad}</span>
+          <span className="w-8 text-center font-semibold text-alma-dorado-oscuro">{item.cantidad}</span>
           <button
             onClick={handleIncrease}
             className="p-1 rounded-full border border-alma-dorado-oscuro/40 hover:bg-alma-dorado-oscuro hover:border-alma-dorado-oscuro hover:text-alma-verde-profundo transition-all duration-200 text-alma-dorado-oscuro"

@@ -93,7 +93,7 @@ export default function PresentacionItem({ presentacion, producto }: Presentacio
             value={cantidad}
             onChange={handleCantidadChange}
             disabled={adding}
-            className="w-16 text-center border border-alma-dorado-oscuro/40 rounded-lg px-2 py-1 text-sm md:text-base font-semibold focus:outline-none focus:ring-2 focus:ring-alma-dorado-oscuro disabled:opacity-50 text-alma-verde-profundo bg-white"
+            className="w-16 text-center border border-alma-dorado-oscuro/40 rounded-md px-2 py-1 text-sm md:text-base font-semibold focus:outline-none focus:ring-2 focus:ring-alma-dorado-oscuro disabled:opacity-50 text-alma-verde-profundo bg-white"
             style={{ backdropFilter: 'blur(12px) saturate(150%)' }}
             aria-label="Cantidad"
           />
@@ -111,7 +111,7 @@ export default function PresentacionItem({ presentacion, producto }: Presentacio
         <button
           onClick={handleAddToCart}
           disabled={adding}
-          className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition-colors text-sm md:text-base ${
+          className={`w-full flex items-center justify-center gap-2 px-4 py-2 rounded-md transition-colors text-sm md:text-base ${
             adding
               ? "bg-alma-dorado-oscuro/80 text-alma-verde-profundo cursor-not-allowed"
               : "bg-alma-dorado-oscuro text-alma-verde-profundo hover:bg-alma-dorado-claro hover:text-alma-verde-profundo font-semibold"

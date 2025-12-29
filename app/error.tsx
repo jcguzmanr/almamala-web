@@ -25,7 +25,7 @@ export default function Error({
       <p className="text-alma-dorado-oscuro mb-4">{error.message}</p>
       <button
         onClick={reset}
-        className="px-4 py-2 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-lg hover:bg-alma-dorado-claro transition-colors"
+        className="px-4 py-2 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-md hover:bg-alma-dorado-claro transition-colors"
       >
         Intentar de nuevo
       </button>

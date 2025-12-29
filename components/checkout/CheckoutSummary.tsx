@@ -8,13 +8,17 @@ import ShippingOptions from "./ShippingOptions";
 import CouponField from "./CouponField";
 import InfoMessages from "./InfoMessages";
 import { processCheckout } from "@/lib/checkout-flow";
-import type { ShippingOption } from "@/types/checkout";
+import type { ShippingOption, LimaZone } from "@/types/checkout";
+import { ZONE_PRICES } from "@/types/checkout";
+import { getWhatsAppNumber } from "@/lib/app-config";
 
 interface CheckoutSummaryProps {
   shippingOption: ShippingOption | null;
   onShippingChange: (option: ShippingOption) => void;
   couponCode: string | null;
   onCouponChange: (code: string | null) => void;
+  limaZone?: LimaZone;
+  onZoneChange?: (zone: LimaZone) => void;
 }
 
 export default function CheckoutSummary({
@@ -22,16 +26,34 @@ export default function CheckoutSummary({
   onShippingChange,
   couponCode,
   onCouponChange,
+  limaZone,
+  onZoneChange,
 }: CheckoutSummaryProps) {
-  const { items, getSubtotal, getTotal, clearCart } = useCart();
+  const { items, getSubtotal, clearCart } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const subtotal = getSubtotal();
-  const total = getTotal();
+  
+  // Calcular costo de envío según la zona
+  const getShippingCost = (): number => {
+    if (shippingOption !== "regular" || !limaZone) {
+      return 0;
+    }
+    const zonePrice = ZONE_PRICES[limaZone];
+    return zonePrice ?? 0;
+  };
+  
+  const shippingCost = getShippingCost();
+  const total = subtotal + shippingCost;
 
   const handleCheckout = async () => {
     if (!shippingOption) {
       setError("Por favor selecciona una opción de envío");
+      return;
+    }
+
+    if (shippingOption === "regular" && !limaZone) {
+      setError("Por favor selecciona una zona de Lima para envío regular");
       return;
     }
 
@@ -43,8 +65,8 @@ export default function CheckoutSummary({
     setLoading(true);
     setError(null);
 
-    // Obtener número de WhatsApp desde env
-    const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "";
+    // Obtener número de WhatsApp desde configuración
+    const whatsappNumber = getWhatsAppNumber();
 
     if (!whatsappNumber) {
       setError("Número de WhatsApp no configurado");
@@ -53,7 +75,7 @@ export default function CheckoutSummary({
     }
 
     try {
-      const result = await processCheckout(items, shippingOption, couponCode, whatsappNumber);
+      const result = await processCheckout(items, shippingOption, couponCode, whatsappNumber, limaZone);
 
       if (result.success) {
         // Limpiar carrito después de éxito
@@ -73,7 +95,7 @@ export default function CheckoutSummary({
     <>
       <div className="space-y-6">
         {/* Totales */}
-        <div className="p-6 bg-white rounded-lg border border-gray-200">
+        <div className="p-6 bg-white rounded-md border border-gray-200">
           <h2 className="text-xl font-bold text-gray-900 mb-4">{CART_TEXTS.totals.title}</h2>
 
           <div className="space-y-4">
@@ -90,9 +112,17 @@ export default function CheckoutSummary({
             <div>
               <div className="flex justify-between mb-1">
                 <span className="text-gray-900 font-medium">{CART_TEXTS.totals.shipping.label}</span>
-                <span className="font-semibold text-gray-900">{formatPrice(0)}</span>
+                <span className="font-semibold text-gray-900">
+                  {shippingOption === "regular" && limaZone && ZONE_PRICES[limaZone] === null
+                    ? "Consultar"
+                    : formatPrice(shippingCost)}
+                </span>
               </div>
-              <p className="text-xs text-gray-600">{CART_TEXTS.totals.shipping.description}</p>
+              <p className="text-xs text-gray-600">
+                {shippingOption === "regular" && limaZone
+                  ? `Zona seleccionada: ${limaZone === "provincias" ? "Provincias" : limaZone.toUpperCase()}`
+                  : CART_TEXTS.totals.shipping.description}
+              </p>
             </div>
 
             {/* Total */}
@@ -107,12 +137,17 @@ export default function CheckoutSummary({
         </div>
 
         {/* Opciones de envío */}
-        <div className="p-6 bg-white rounded-lg border border-gray-200">
-          <ShippingOptions selectedOption={shippingOption} onSelect={onShippingChange} />
+        <div className="p-6 bg-white rounded-md border border-gray-200">
+          <ShippingOptions
+            selectedOption={shippingOption}
+            onSelect={onShippingChange}
+            selectedZone={limaZone}
+            onZoneSelect={onZoneChange}
+          />
         </div>
 
         {/* Campo de cupón */}
-        <div className="p-6 bg-white rounded-lg border border-gray-200">
+        <div className="p-6 bg-white rounded-md border border-gray-200">
           <CouponField value={couponCode} onChange={onCouponChange} />
         </div>
 
@@ -121,13 +156,13 @@ export default function CheckoutSummary({
 
         {/* Error */}
         {error && (
-          <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
+          <div className="p-4 bg-red-50 border border-red-200 rounded-md">
             <p className="text-sm text-red-700">{error}</p>
           </div>
         )}
 
         {/* Información antes del botón */}
-        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+        <div className="p-4 bg-yellow-50 border border-yellow-200 rounded-md">
           <p className="font-semibold text-gray-900 mb-2">{CART_TEXTS.checkout.continueInfo.title}</p>
           <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
             {CART_TEXTS.checkout.continueInfo.points.map((point, index) => (
@@ -143,7 +178,7 @@ export default function CheckoutSummary({
           <button
             onClick={handleCheckout}
             disabled={!shippingOption || loading}
-            className="w-full px-6 py-4 bg-green-700 text-white rounded-lg font-semibold text-lg hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
+            className="w-full px-6 py-4 bg-green-700 text-white rounded-md font-semibold text-lg hover:bg-green-800 disabled:bg-gray-400 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
               <>

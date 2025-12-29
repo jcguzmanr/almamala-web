@@ -13,94 +13,88 @@ export default function ProductoSensory({ producto }: ProductoSensoryProps) {
   }
 
   return (
-    <div className="mt-6 pt-6 border-t border-alma-dorado-oscuro/30">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div className="mt-6 pt-6">
+      {/* Nutrition Facts Style Header */}
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold text-alma-dorado-oscuro mb-3">
+          Perfil sensorial
+        </h3>
+      </div>
+      
+      <div className="overflow-x-auto scrollbar-hide">
+        <div className="flex gap-4 min-w-max pb-2">
         {/* NOSE */}
         {producto.nose && (
-          <div className="flex gap-3">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-alma-dorado-oscuro/20 flex items-center justify-center border-2 border-alma-dorado-oscuro/50">
+          <div className="flex flex-col gap-3 w-[280px] h-auto flex-shrink-0 bg-white/5 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/30 justify-start items-start">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
                 <Grape className="w-4 h-4 text-alma-dorado-oscuro" />
               </div>
+              <h4 className="text-alma-dorado-oscuro font-bold text-base">NOSE</h4>
             </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="text-alma-dorado-oscuro font-bold text-base mb-1.5">NOSE</h4>
-              <p className="text-alma-verde-profundo/90 italic text-sm leading-relaxed">
-                {producto.nose}
-              </p>
-            </div>
+            <p className="text-alma-dorado-oscuro/90 italic text-xs leading-relaxed line-clamp-2 pl-[15px] pr-[15px]">
+              {producto.nose}
+            </p>
           </div>
         )}
 
         {/* TASTE */}
         {producto.taste && (
-          <div className="flex gap-3">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-alma-dorado-oscuro/20 flex items-center justify-center border-2 border-alma-dorado-oscuro/50">
+          <div className="flex flex-col gap-3 w-[280px] h-auto flex-shrink-0 bg-white/5 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/30 justify-start items-start">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
                 <Wine className="w-4 h-4 text-alma-dorado-oscuro" />
               </div>
+              <h4 className="text-alma-dorado-oscuro font-bold text-base">TASTE</h4>
             </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="text-alma-dorado-oscuro font-bold text-base mb-1.5">TASTE</h4>
-              <p className="text-alma-verde-profundo/90 italic text-sm leading-relaxed">
-                {producto.taste}
-              </p>
-            </div>
+            <p className="text-alma-dorado-oscuro/90 italic text-xs leading-relaxed line-clamp-2 pl-[15px] pr-[15px]">
+              {producto.taste}
+            </p>
           </div>
         )}
 
         {/* FINISH */}
         {producto.finish && (
-          <div className="flex gap-3">
-            <div className="flex-shrink-0">
-              <div className="w-10 h-10 rounded-full bg-alma-dorado-oscuro/20 flex items-center justify-center border-2 border-alma-dorado-oscuro/50">
+          <div className="flex flex-col gap-3 w-[280px] h-auto flex-shrink-0 bg-white/5 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/30 justify-start items-start">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
                 <Sparkles className="w-4 h-4 text-alma-dorado-oscuro" />
               </div>
+              <h4 className="text-alma-dorado-oscuro font-bold text-base">FINISH</h4>
             </div>
-            <div className="flex-1 min-w-0">
-              <h4 className="text-alma-dorado-oscuro font-bold text-base mb-1.5">FINISH</h4>
-              <p className="text-alma-verde-profundo/90 italic text-sm leading-relaxed">
-                {producto.finish}
-              </p>
-            </div>
+            <p className="text-alma-dorado-oscuro/90 italic text-xs leading-relaxed line-clamp-2 pl-[15px] pr-[15px]">
+              {producto.finish}
+            </p>
           </div>
         )}
 
-        {/* ABV y COCKTAILS en la misma fila */}
-        <div className="flex flex-wrap gap-6 md:col-span-2 pt-2">
-          {/* ABV */}
-          {producto.abv && (
-            <div className="flex gap-3">
-              <div className="flex-shrink-0">
-                <div className="w-10 h-10 rounded-full bg-alma-dorado-oscuro/20 flex items-center justify-center border-2 border-alma-dorado-oscuro/50">
-                  <Percent className="w-4 h-4 text-alma-dorado-oscuro" />
-                </div>
-              </div>
-              <div>
-                <h4 className="text-alma-dorado-oscuro font-bold text-base mb-1">ABV</h4>
-                <p className="text-alma-verde-profundo/90 font-semibold text-sm">
-                  {producto.abv}
-                </p>
-              </div>
+        {/* ABV */}
+        {producto.abv && (
+          <div className="flex flex-col gap-3 w-[200px] h-auto flex-shrink-0 bg-white/5 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/30 justify-center items-center">
+            <div className="w-10 h-10 rounded-full flex items-center justify-center">
+              <Percent className="w-4 h-4 text-alma-dorado-oscuro" />
             </div>
-          )}
+            <h4 className="text-alma-dorado-oscuro font-bold text-base">ABV</h4>
+            <p className="text-alma-dorado-oscuro/90 font-semibold text-lg">
+              {producto.abv}
+            </p>
+          </div>
+        )}
 
-          {/* COCKTAILS */}
-          {producto.cocktails && (
-            <div className="flex gap-3">
-              <div className="flex-shrink-0">
-                <div className="w-10 h-10 rounded-full bg-alma-dorado-oscuro/20 flex items-center justify-center border-2 border-alma-dorado-oscuro/50">
-                  <GlassWater className="w-4 h-4 text-alma-dorado-oscuro" />
-                </div>
+        {/* COCKTAILS */}
+        {producto.cocktails && (
+          <div className="flex flex-col gap-3 w-[280px] h-auto flex-shrink-0 bg-white/5 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/30 justify-start items-start">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0">
+                <GlassWater className="w-4 h-4 text-alma-dorado-oscuro" />
               </div>
-              <div>
-                <h4 className="text-alma-dorado-oscuro font-bold text-base mb-1">COCKTAILS</h4>
-                <p className="text-alma-verde-profundo/90 text-sm">
-                  {producto.cocktails}
-                </p>
-              </div>
+              <h4 className="text-alma-dorado-oscuro font-bold text-base">COCKTAILS</h4>
             </div>
-          )}
+            <p className="text-alma-dorado-oscuro/90 text-xs leading-relaxed line-clamp-2 pl-[15px] pr-[15px]">
+              {producto.cocktails}
+            </p>
+          </div>
+        )}
         </div>
       </div>
     </div>

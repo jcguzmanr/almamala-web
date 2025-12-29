@@ -67,8 +67,11 @@ export default function Step2ShippingInfo({
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
-      <div className="p-6 bg-alma-blanco-hueso/95 backdrop-blur-sm rounded-lg border border-alma-dorado-oscuro/20 shadow-lg">
-        <h2 className="text-xl font-bold text-alma-dorado-oscuro mb-4">Facturación y envío</h2>
+      <div 
+        className="p-6 bg-white/10 backdrop-blur-md rounded-lg border border-alma-dorado-oscuro/20 shadow-lg"
+        style={{ backdropFilter: 'blur(12px) saturate(150%)' }}
+      >
+        <h2 className="text-xl font-bold text-alma-dorado-claro mb-4">Facturación y envío</h2>
 
         <div className="space-y-4">
           {/* Email */}
@@ -80,9 +83,9 @@ export default function Step2ShippingInfo({
               type="email"
               value={formData.email}
               onChange={(e) => handleChange("email", e.target.value)}
-              placeholder="Ingresa tu Correo"
-              className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                errors.email ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+              placeholder="ejemplo@correo.com"
+              className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                errors.email ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
               }`}
             />
             {errors.email && <p className="text-xs text-red-500 mt-1">{errors.email}</p>}
@@ -98,9 +101,9 @@ export default function Step2ShippingInfo({
                 type="text"
                 value={formData.nombre}
                 onChange={(e) => handleChange("nombre", e.target.value)}
-                placeholder="Escribe tu Nombre"
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                  errors.nombre ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                placeholder="Juan"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                  errors.nombre ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                 }`}
               />
               {errors.nombre && <p className="text-xs text-red-500 mt-1">{errors.nombre}</p>}
@@ -108,15 +111,15 @@ export default function Step2ShippingInfo({
 
             <div>
               <label className="block text-sm font-medium text-alma-dorado-oscuro mb-1">
-                Apellidos Completos <span className="text-red-500">*</span>
+                Apellidos <span className="text-red-500">*</span>
               </label>
               <input
                 type="text"
                 value={formData.apellidos}
                 onChange={(e) => handleChange("apellidos", e.target.value)}
-                placeholder="Escribe todos tus Apellidos"
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                  errors.apellidos ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                placeholder="Pérez García"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                  errors.apellidos ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                 }`}
               />
               {errors.apellidos && <p className="text-xs text-red-500 mt-1">{errors.apellidos}</p>}
@@ -133,9 +136,9 @@ export default function Step2ShippingInfo({
                 type="text"
                 value={formData.dni}
                 onChange={(e) => handleChange("dni", e.target.value)}
-                placeholder="Escribe tu DNI o CE"
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                  errors.dni ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                placeholder="12345678"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                  errors.dni ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                 }`}
               />
               {errors.dni && <p className="text-xs text-red-500 mt-1">{errors.dni}</p>}
@@ -143,15 +146,16 @@ export default function Step2ShippingInfo({
 
             <div>
               <label className="block text-sm font-medium text-alma-dorado-oscuro mb-1">
-                Celular | Escribe sin espacio y sin +51 <span className="text-red-500">*</span>
+                Celular <span className="text-red-500">*</span>
+                <span className="text-xs text-alma-dorado-oscuro/70 font-normal ml-2">(Sin espacios ni +51)</span>
               </label>
               <input
                 type="tel"
                 value={formData.celular}
                 onChange={(e) => handleChange("celular", e.target.value.replace(/\s+/g, ""))}
-                placeholder="Ingresa tu número 999888666"
-                className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                  errors.celular ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                placeholder="999888777"
+                className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                  errors.celular ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                 }`}
               />
               {errors.celular && <p className="text-xs text-red-500 mt-1">{errors.celular}</p>}
@@ -160,8 +164,8 @@ export default function Step2ShippingInfo({
 
           {/* Dirección */}
           <div>
-            <h3 className="text-lg font-semibold text-gray-900 mb-3">
-              2. Ingresa tu dirección para calcular el costo de envío:
+            <h3 className="text-lg font-semibold text-alma-dorado-claro mb-3">
+              Dirección de envío
             </h3>
 
             <div className="space-y-4">
@@ -173,9 +177,9 @@ export default function Step2ShippingInfo({
                   type="text"
                   value={formData.direccion}
                   onChange={(e) => handleChange("direccion", e.target.value)}
-                  placeholder="Dirección de entrega"
-                  className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                    errors.direccion ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                  placeholder="Av. Principal 123"
+                  className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                    errors.direccion ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                   }`}
                 />
                 {errors.direccion && <p className="text-xs text-red-500 mt-1">{errors.direccion}</p>}
@@ -183,14 +187,17 @@ export default function Step2ShippingInfo({
 
               <div>
                 <label className="block text-sm font-medium text-alma-dorado-oscuro mb-1">
-                  Referencia (opcional)
+                  Referencia <span className="text-xs text-alma-dorado-oscuro/70 font-normal">(opcional)</span>
                 </label>
+                <p className="text-xs text-alma-dorado-oscuro/70 mb-2">
+                  Puedes agregar una descripción o un enlace de Google Maps para facilitar la ubicación
+                </p>
                 <input
                   type="text"
                   value={formData.referencia}
                   onChange={(e) => handleChange("referencia", e.target.value)}
-                  placeholder="Ejemplo: cerca a plazavea, a 1 cdra del parque, etc.."
-                  className="w-full px-4 py-2 border border-alma-dorado-oscuro/40 rounded-lg focus:outline-none focus:ring-2 focus:ring-alma-dorado-oscuro bg-white text-alma-verde-profundo"
+                  placeholder="Ej: Cerca a Plaza Vea, a 1 cuadra del parque. O pega aquí el link de Google Maps"
+                  className="w-full px-4 py-2 border border-alma-dorado-oscuro/30 rounded-md focus:outline-none focus:ring-2 focus:ring-alma-dorado-oscuro bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50"
                 />
               </div>
 
@@ -202,11 +209,11 @@ export default function Step2ShippingInfo({
                   <select
                     value={formData.departamento}
                     onChange={(e) => handleChange("departamento", e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                      errors.departamento ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro ${
+                      errors.departamento ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                     }`}
                   >
-                    <option value="">Elige una opción...</option>
+                    <option value="" className="text-alma-dorado-oscuro/50">Selecciona un departamento</option>
                     <option value="Lima">Lima</option>
                     <option value="Lima Provincias">Lima Provincias</option>
                     {/* Agregar más departamentos según necesidad */}
@@ -223,12 +230,12 @@ export default function Step2ShippingInfo({
                   <select
                     value={formData.provincia}
                     onChange={(e) => handleChange("provincia", e.target.value)}
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                      errors.provincia ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro ${
+                      errors.provincia ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                     }`}
                     disabled={!formData.departamento}
                   >
-                    <option value="">Elige una opción...</option>
+                    <option value="" className="text-alma-dorado-oscuro/50">Selecciona una provincia</option>
                     {formData.departamento === "Lima" && (
                       <>
                         <option value="Lima">Lima</option>
@@ -255,9 +262,9 @@ export default function Step2ShippingInfo({
                     type="text"
                     value={formData.distrito}
                     onChange={(e) => handleChange("distrito", e.target.value)}
-                    placeholder="Escribe tu distrito"
-                    className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 bg-white text-alma-verde-profundo ${
-                      errors.distrito ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/40 focus:ring-alma-dorado-oscuro"
+                    placeholder="Miraflores"
+                    className={`w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 bg-white/10 backdrop-blur-sm text-alma-dorado-oscuro placeholder:text-alma-dorado-oscuro/50 ${
+                      errors.distrito ? "border-red-500 focus:ring-red-500" : "border-alma-dorado-oscuro/30 focus:ring-alma-dorado-oscuro"
                     }`}
                   />
                   {errors.distrito && <p className="text-xs text-red-500 mt-1">{errors.distrito}</p>}
@@ -274,13 +281,13 @@ export default function Step2ShippingInfo({
           <button
             type="button"
             onClick={onBack}
-            className="flex-1 px-6 py-4 border border-alma-dorado-oscuro text-alma-dorado-claro rounded-lg font-semibold hover:bg-alma-dorado-oscuro/20 transition-colors"
+            className="flex-[0.2] px-6 py-4 border border-alma-dorado-oscuro text-alma-dorado-claro rounded-md font-semibold hover:bg-alma-dorado-oscuro/20 transition-colors"
           >
             Volver
           </button>
           <button
             type="submit"
-            className="flex-1 px-6 py-4 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-lg font-semibold text-lg hover:bg-alma-dorado-claro hover:text-alma-verde-profundo transition-colors"
+            className="flex-1 px-6 py-4 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-md font-semibold text-lg hover:bg-alma-dorado-claro hover:text-alma-verde-profundo transition-colors"
           >
             Continuar
           </button>

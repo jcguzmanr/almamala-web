@@ -1,5 +1,5 @@
 import type { CartItem } from "@/types/cart";
-import type { ShippingOption } from "@/types/checkout";
+import type { ShippingOption, LimaZone, ShippingInfo } from "@/types/checkout";
 import type { OrderPayload } from "@/types/order";
 import { buildOrderPayload } from "./order-builder";
 import { buildWhatsAppMessage, openWhatsApp } from "./whatsapp-message";
@@ -17,11 +17,14 @@ export async function processCheckout(
   cartItems: CartItem[],
   shippingOption: ShippingOption,
   couponCode: string | null,
-  whatsappNumber: string
+  whatsappNumber: string,
+  limaZone: LimaZone | undefined,
+  shippingInfo?: ShippingInfo,
+  bottleReturnDiscount: number = 0
 ): Promise<CheckoutResult> {
   try {
     // Construir payload
-    const payload = buildOrderPayload(cartItems, shippingOption, couponCode);
+    const payload = buildOrderPayload(cartItems, shippingOption, couponCode, limaZone);
 
     // Registrar pedido en backend
     const response = await fetch("/api/orders", {
@@ -43,8 +46,21 @@ export async function processCheckout(
 
     const orderId = data.orderId;
 
-    // Construir mensaje de WhatsApp
-    const message = buildWhatsAppMessage(payload, orderId);
+    // Construir mensaje de WhatsApp con toda la información
+    // Si shippingInfo no está disponible, usar información básica
+    const defaultShippingInfo: ShippingInfo = shippingInfo || {
+      nombre: "",
+      apellidos: "",
+      email: "",
+      celular: "",
+      dni: "",
+      direccion: "",
+      distrito: "",
+      provincia: "",
+      departamento: "",
+    };
+    
+    const message = buildWhatsAppMessage(payload, orderId, defaultShippingInfo, bottleReturnDiscount);
 
     // Abrir WhatsApp
     openWhatsApp(whatsappNumber, message);

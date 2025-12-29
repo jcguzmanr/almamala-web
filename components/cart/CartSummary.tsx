@@ -10,7 +10,7 @@ export default function CartSummary() {
   const total = getTotal();
 
   return (
-    <div className="space-y-4 p-6 bg-white rounded-lg border border-gray-200">
+    <div className="space-y-4 p-6 bg-white rounded-md border border-gray-200">
       <h2 className="text-xl font-bold text-gray-900 mb-4">{CART_TEXTS.totals.title}</h2>
 
       <div className="space-y-4">

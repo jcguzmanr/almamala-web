@@ -26,9 +26,9 @@ export const CART_TEXTS = {
       description: "Entrega sin costo adicional dentro del plazo indicado. Disponible de lunes a viernes.",
     },
     retiro: {
-      title: "Retiro en oficina",
+      title: "Retiro en Depósito",
       description:
-        "Recoge tu pedido directamente en nuestra oficina una vez confirmado el pago. El retiro estará disponible en un plazo máximo de 48 horas después de la verificación del depósito. Recibirás un mensaje de confirmación por WhatsApp antes de acercarte.",
+        "Recoge tu pedido directamente en nuestro depósito una vez confirmado el pago. El retiro estará disponible en un plazo máximo de 48 horas después de la verificación del depósito.",
     },
   },
   coupon: {

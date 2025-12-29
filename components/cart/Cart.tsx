@@ -6,7 +6,7 @@ import CheckoutSteps from "@/components/checkout/CheckoutSteps";
 import Step1CartReview from "@/components/checkout/Step1CartReview";
 import Step2ShippingInfo from "@/components/checkout/Step2ShippingInfo";
 import Step3OrderReview from "@/components/checkout/Step3OrderReview";
-import type { ShippingOption } from "@/types/checkout";
+import type { ShippingOption, LimaZone, BottleReturn } from "@/types/checkout";
 import type { ShippingInfo } from "@/types/checkout";
 
 export default function Cart() {
@@ -14,6 +14,8 @@ export default function Cart() {
   const [currentStep, setCurrentStep] = useState(1);
   const [shippingOption, setShippingOption] = useState<ShippingOption | null>(null);
   const [couponCode, setCouponCode] = useState<string | null>(null);
+  const [limaZone, setLimaZone] = useState<LimaZone>(null);
+  const [bottleReturns, setBottleReturns] = useState<BottleReturn[]>([]);
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo | null>(null);
 
   if (items.length === 0) {
@@ -22,7 +24,7 @@ export default function Cart() {
         <p className="text-xl text-alma-dorado-claro mb-4">Tu carrito está vacío</p>
         <a
           href="/"
-          className="px-6 py-3 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-lg hover:bg-alma-dorado-claro hover:text-alma-verde-profundo transition-colors font-semibold"
+          className="px-6 py-3 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-md hover:bg-alma-dorado-claro hover:text-alma-verde-profundo transition-colors font-semibold"
         >
           Ver catálogo
         </a>
@@ -52,7 +54,7 @@ export default function Cart() {
         <h1 className="text-3xl md:text-4xl font-bold text-alma-dorado-claro">Carrito de compras</h1>
         <a
           href="/"
-          className="px-4 py-2 text-alma-dorado-oscuro border border-alma-dorado-oscuro rounded-lg hover:bg-alma-dorado-claro/20 transition-colors font-medium"
+          className="px-4 py-2 text-alma-dorado-oscuro border border-alma-dorado-oscuro rounded-md hover:bg-alma-dorado-claro/20 transition-colors font-medium"
         >
           ← Seguir comprando
         </a>
@@ -68,6 +70,10 @@ export default function Cart() {
           onShippingChange={setShippingOption}
           couponCode={couponCode}
           onCouponChange={setCouponCode}
+          limaZone={limaZone}
+          onZoneChange={setLimaZone}
+          bottleReturns={bottleReturns}
+          onBottleReturnsChange={setBottleReturns}
           onNext={handleStep1Next}
         />
       )}
@@ -86,6 +92,8 @@ export default function Cart() {
           shippingOption={shippingOption}
           couponCode={couponCode}
           shippingInfo={shippingInfo}
+          limaZone={limaZone}
+          bottleReturns={bottleReturns}
           onBack={handleBack}
         />
       )}

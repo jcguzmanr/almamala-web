@@ -66,7 +66,7 @@ export default function ProductosList() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {productos.map((producto, index) => (
         <ProductoCard key={`${producto.categoria}-${index}`} producto={producto} />
       ))}

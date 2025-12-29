@@ -14,18 +14,15 @@ export default function ProductoCard({ producto }: ProductoCardProps) {
       style={{ backdropFilter: 'blur(12px) saturate(150%)' }}
     >
       {/* Header */}
-      <div className="border-b border-alma-dorado-oscuro/30 pb-4">
+      <div className="pb-4">
         <h2 className="text-2xl md:text-3xl font-bold text-alma-dorado-oscuro mb-2">
           {producto.tipoPisco}
         </h2>
-        <p className="text-sm md:text-base text-alma-verde-profundo/90 mb-2">{producto.descripcion}</p>
+        <p className="text-sm md:text-base text-alma-dorado-oscuro/90 mb-2">{producto.descripcion}</p>
         <p className="text-sm md:text-base text-alma-dorado-oscuro/80 italic">
           {producto.disfrutaloEn}
         </p>
       </div>
-
-      {/* Sección sensorial */}
-      <ProductoSensory producto={producto} />
 
       {/* Presentaciones */}
       <div>
@@ -40,6 +37,9 @@ export default function ProductoCard({ producto }: ProductoCardProps) {
           ))}
         </div>
       </div>
+
+      {/* Sección sensorial */}
+      <ProductoSensory producto={producto} />
     </div>
   );
 }
