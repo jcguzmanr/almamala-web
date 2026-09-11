@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
 import Footer from "@/components/Footer";
+import AgeVerification from "@/components/AgeVerification";
 
 export const metadata: Metadata = {
   title: "Alma Mala | Desde Mala, Perú",
@@ -35,6 +36,7 @@ export default function RootLayout({
     <html lang="es">
       <body className="antialiased text-alma-dorado-oscuro flex flex-col min-h-screen">
         <CartProvider>
+          <AgeVerification />
           {children}
           <Footer />
         </CartProvider>
