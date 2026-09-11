@@ -28,6 +28,11 @@ export type OrderPayload = {
     createdAt: string;
     userAgent?: string;
   };
+  receipt?: {
+    fileName: string;
+    mimeType: string;
+    size: number;
+  };
 };
 
 export type OrderMetadata = {

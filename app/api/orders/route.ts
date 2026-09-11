@@ -25,6 +25,7 @@ export async function POST(request: Request) {
       total: body.total,
       coupon: body.coupon,
       metadata: body.metadata,
+      receipt: body.receipt,
     };
 
     // Validar payload

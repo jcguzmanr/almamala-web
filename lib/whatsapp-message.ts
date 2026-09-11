@@ -2,6 +2,16 @@ import type { OrderPayload } from "@/types/order";
 import type { ShippingInfo } from "@/types/checkout";
 import { formatPrice } from "./cart";
 import { ZONE_PRICES } from "@/types/checkout";
+import { getWhatsAppDisplayNumber } from "./app-config";
+import { copyReceiptImageToClipboard, downloadReceiptFile } from "./receipt";
+
+export type WhatsAppHandoffMethod = "share" | "link";
+
+export type WhatsAppHandoffResult = {
+  method: WhatsAppHandoffMethod;
+  fileIncluded: boolean;
+  cancelled: boolean;
+};
 
 /**
  * Construye el mensaje de WhatsApp con el formato especificado
@@ -10,7 +20,8 @@ export function buildWhatsAppMessage(
   orderPayload: OrderPayload,
   orderId: string,
   shippingInfo: ShippingInfo,
-  bottleReturnDiscount: number = 0
+  bottleReturnDiscount: number = 0,
+  receiptFileName?: string
 ): string {
   let message = "Hola, quiero hacer un pedido de Alma Mala.\n\n";
   message += `📦 Pedido #${orderId}\n\n`;
@@ -69,6 +80,12 @@ export function buildWhatsAppMessage(
   }
 
   message += `\n`;
+  if (receiptFileName) {
+    message += `🧾 *Comprobante de pago*\n`;
+    message += `Archivo: ${receiptFileName}\n`;
+    message += `Enviar a: +51 ${getWhatsAppDisplayNumber()}\n`;
+    message += `Va adjunto en este envío. Si no aparece, súbelo en este chat.\n\n`;
+  }
   message += "Gracias!";
 
   return message;
@@ -97,5 +114,52 @@ export function buildWhatsAppURL(number: string, message: string): string {
 export function openWhatsApp(number: string, message: string): void {
   const url = buildWhatsAppURL(number, message);
   window.open(url, "_blank");
+}
+
+function canShareReceipt(file: File, message: string): boolean {
+  if (typeof navigator === "undefined" || typeof navigator.canShare !== "function") {
+    return false;
+  }
+
+  try {
+    return navigator.canShare({ files: [file], text: message });
+  } catch {
+    try {
+      return navigator.canShare({ files: [file] });
+    } catch {
+      return false;
+    }
+  }
+}
+
+/**
+ * Entrega el pedido a WhatsApp con el comprobante.
+ * wa.me no admite archivos: en móvil usamos Web Share (el usuario elige WhatsApp);
+ * en escritorio abrimos el chat y dejamos el archivo listo para adjuntar.
+ */
+export async function sendOrderWithReceipt(
+  number: string,
+  message: string,
+  receipt: File
+): Promise<WhatsAppHandoffResult> {
+  if (canShareReceipt(receipt, message)) {
+    try {
+      await navigator.share({
+        text: message,
+        files: [receipt],
+      });
+      return { method: "share", fileIncluded: true, cancelled: false };
+    } catch (error) {
+      if (error instanceof DOMException && error.name === "AbortError") {
+        return { method: "share", fileIncluded: false, cancelled: true };
+      }
+      // Si el share falla (permiso, tipo), caemos al chat directo.
+    }
+  }
+
+  await copyReceiptImageToClipboard(receipt);
+  downloadReceiptFile(receipt);
+  openWhatsApp(number, message);
+  return { method: "link", fileIncluded: false, cancelled: false };
 }
 

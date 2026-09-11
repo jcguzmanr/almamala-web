@@ -5,18 +5,38 @@ import { useCart } from "@/contexts/CartContext";
 import CheckoutSteps from "@/components/checkout/CheckoutSteps";
 import Step1CartReview from "@/components/checkout/Step1CartReview";
 import Step2ShippingInfo from "@/components/checkout/Step2ShippingInfo";
-import Step3OrderReview from "@/components/checkout/Step3OrderReview";
+import Step3OrderReview, { type CompletedCheckout } from "@/components/checkout/Step3OrderReview";
+import OrderSent from "@/components/checkout/OrderSent";
 import type { ShippingOption, LimaZone, BottleReturn } from "@/types/checkout";
 import type { ShippingInfo } from "@/types/checkout";
 
 export default function Cart() {
-  const { items } = useCart();
+  const { items, clearCart } = useCart();
   const [currentStep, setCurrentStep] = useState(1);
   const [shippingOption, setShippingOption] = useState<ShippingOption | null>(null);
   const [couponCode, setCouponCode] = useState<string | null>(null);
   const [limaZone, setLimaZone] = useState<LimaZone>(null);
   const [bottleReturns, setBottleReturns] = useState<BottleReturn[]>([]);
   const [shippingInfo, setShippingInfo] = useState<ShippingInfo | null>(null);
+  const [completed, setCompleted] = useState<CompletedCheckout | null>(null);
+
+  if (completed) {
+    return (
+      <div className="max-w-4xl mx-auto p-4 md:p-8 space-y-6">
+        <h1 className="text-3xl md:text-4xl font-bold text-alma-dorado-claro mb-6">
+          Pedido enviado
+        </h1>
+        <OrderSent
+          orderId={completed.orderId}
+          method={completed.method}
+          fileIncluded={completed.fileIncluded}
+          message={completed.message}
+          receipt={completed.receipt}
+          whatsappNumber={completed.whatsappNumber}
+        />
+      </div>
+    );
+  }
 
   if (items.length === 0) {
     return (
@@ -95,6 +115,10 @@ export default function Cart() {
           limaZone={limaZone}
           bottleReturns={bottleReturns}
           onBack={handleBack}
+          onComplete={(result) => {
+            setCompleted(result);
+            clearCart();
+          }}
         />
       )}
     </div>
