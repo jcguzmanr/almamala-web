@@ -41,7 +41,7 @@ function NavLink({
 export default function SiteHeader({ centerDesktop, below }: SiteHeaderProps) {
   const pathname = usePathname();
   const isMarca = pathname === "/marca";
-  const isComprar = pathname === "/";
+  const isComprar = pathname === "/" || pathname === "/carrito";
 
   return (
     <header className="sticky top-0 z-20 border-b border-alma-dorado-oscuro/20 bg-alma-verde-profundo/90 backdrop-blur-md">

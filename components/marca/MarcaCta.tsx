@@ -15,7 +15,7 @@ export default function MarcaCta() {
         <h2 className="mt-3 font-serif text-3xl font-semibold text-alma-blanco-hueso md:text-5xl">
           {marcaCta.title}
         </h2>
-        <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-alma-blanco-hueso/88">
+        <p className="mx-auto mt-4 max-w-xl text-base leading-relaxed text-alma-blanco-hueso/90">
           {marcaCta.body}
         </p>
         <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

@@ -18,7 +18,7 @@ export default function MarcaOrigin() {
           >
             {marcaOrigin.title}
           </h2>
-          <p className="mt-5 text-base leading-relaxed text-alma-blanco-hueso/88 md:text-lg">
+          <p className="mt-5 text-base leading-relaxed text-alma-blanco-hueso/90 md:text-lg">
             {marcaOrigin.body}
           </p>
         </div>

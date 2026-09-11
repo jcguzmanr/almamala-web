@@ -18,7 +18,7 @@ export default function MarcaPillars() {
         >
           Cómo se sostiene la marca
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-alma-blanco-hueso/88">
+        <p className="mt-4 text-base leading-relaxed text-alma-blanco-hueso/90">
           Cinco acentos, con peso distinto. La sostenibilidad aparece al final — y
           solo con prueba concreta.
         </p>

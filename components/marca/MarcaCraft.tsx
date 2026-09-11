@@ -21,7 +21,7 @@ export default function MarcaCraft() {
         >
           {marcaCraft.title}
         </h2>
-        <p className="mt-4 text-base leading-relaxed text-alma-blanco-hueso/88">
+        <p className="mt-4 text-base leading-relaxed text-alma-blanco-hueso/90">
           {marcaCraft.lead}
         </p>
       </div>
