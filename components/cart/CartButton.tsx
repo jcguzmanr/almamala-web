@@ -23,7 +23,7 @@ export default function CartButton() {
   return (
     <Link
       href="/carrito"
-      className="relative inline-flex items-center justify-center p-2 text-alma-dorado-claro hover:text-alma-dorado-oscuro transition-all duration-300 hover:bg-alma-dorado-oscuro/20 rounded-full hover:scale-110"
+      className="relative inline-flex items-center justify-center rounded-full p-2 text-alma-dorado-claro transition-all duration-300 hover:scale-110 hover:bg-alma-dorado-oscuro/20 hover:text-alma-dorado-oscuro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-alma-dorado-claro"
       aria-label="Ver carrito"
     >
       <ShoppingCart size={24} className="transition-transform duration-300" />

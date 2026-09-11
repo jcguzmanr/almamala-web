@@ -1,11 +1,12 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
 import ProductosList from "@/components/productos/ProductosList";
-import CartButton from "@/components/cart/CartButton";
 import PiscoTabs from "@/components/productos/PiscoTabs";
 import { PiscoTabsProvider } from "@/components/productos/PiscoTabsContext";
+import SiteHeader from "@/components/layout/SiteHeader";
 
 export default function Home() {
   const [isTabsSticky, setIsTabsSticky] = useState(false);
@@ -13,57 +14,44 @@ export default function Home() {
   return (
     <PiscoTabsProvider>
       <main className="flex-1">
-        {/* Header con carrito */}
-        <header className="bg-alma-verde-profundo/90 backdrop-blur-sm border-b border-alma-dorado-oscuro/20 sticky top-0 z-10">
-          <div className="max-w-6xl mx-auto px-2 md:px-4 lg:px-8 py-3 md:py-4">
-            {/* Primera fila: Logo y Carrito */}
-            <div className="flex justify-between items-center gap-2 mb-2 md:mb-0">
-              <a href="/" className="flex items-center flex-shrink-0">
-                <Image
-                  src="/images/logo_am.svg"
-                  alt="Alma Mala"
-                  width={145}
-                  height={36}
-                  className="h-7 md:h-9 w-auto"
-                  priority
-                />
-              </a>
-              {/* Tabs sticky en desktop - misma fila */}
-              {isTabsSticky && (
-                <div className="hidden md:flex flex-1 justify-center mx-4">
-                  <PiscoTabs renderInHeader={true} />
-                </div>
-              )}
-              <div className="flex-shrink-0">
-                <CartButton />
-              </div>
-            </div>
-            {/* Segunda fila en mobile: Tabs sticky */}
-            {isTabsSticky && (
-              <div className="md:hidden">
+        <SiteHeader
+          centerDesktop={isTabsSticky ? <PiscoTabs renderInHeader={true} /> : null}
+          below={
+            isTabsSticky ? (
+              <div className="mt-2 md:hidden">
                 <PiscoTabs renderInHeader={true} />
               </div>
-            )}
-          </div>
-        </header>
+            ) : null
+          }
+        />
 
-        <div className="max-w-6xl mx-auto py-8 px-4 md:px-8">
-          {/* Logo grande */}
-          <div className="flex justify-center mb-8">
+        <div className="mx-auto max-w-6xl px-4 py-8 md:px-8">
+          <div className="mb-6 flex justify-center">
             <Image
               src="/images/logo_am.svg"
               alt="Alma Mala"
               width={200}
               height={50}
-              className="w-32 md:w-40 h-auto"
+              className="h-auto w-32 md:w-40"
               priority
             />
           </div>
 
-          {/* Tabs de navegación */}
+          <div className="mb-8 flex justify-center">
+            <Link
+              href="/marca"
+              className="inline-flex max-w-full items-center gap-2 rounded-full border border-alma-dorado-oscuro/30 bg-white/10 px-4 py-2 text-sm text-alma-blanco-hueso/90 backdrop-blur-md transition hover:border-alma-dorado-claro/60 hover:text-alma-dorado-claro focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-alma-dorado-claro"
+            >
+              <span className="font-semibold text-alma-dorado-claro">La marca</span>
+              <span className="hidden sm:inline text-alma-blanco-hueso/75">
+                Valle de Mala · pisco craft
+              </span>
+              <span aria-hidden="true">→</span>
+            </Link>
+          </div>
+
           <PiscoTabs onStickyChange={setIsTabsSticky} />
 
-          {/* Catálogo */}
           <ProductosList />
         </div>
       </main>
