@@ -1,4 +1,6 @@
 ---
+cursor:
+  subagentId: "bc-f73aeefe-76ed-50fd-8166-4471e83f31d7"
 title: Review de optimización — PMV web Alma Mala
 date: 2026-09-10
 live: https://almamala-web.vercel.app
