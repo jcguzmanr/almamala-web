@@ -1,11 +1,18 @@
 # Sistema de diseño — Alma Mala
 
-Esta carpeta guarda el brief que un humano + Claude Code (en Mac) deben ejecutar para unificar tokens y llevar el catálogo a una dirección producto-primero.
+Método: **tokens → components → recipes → templates**. Los tokens son JSON, no una página HTML de reglas. El logo vive en `logo/`, no en la tabla de color.
 
-**Empieza por:** [`BRIEF.md`](./BRIEF.md)
+| Capa        | Dónde                         |
+| ----------- | ----------------------------- |
+| Tarea       | [`BRIEF.md`](./BRIEF.md)      |
+| Tokens      | [`tokens/`](./tokens/)        |
+| Logo        | [`logo/`](./logo/)            |
+| Components  | [`components/`](./components/) |
+| Recipes     | [`recipes/`](./recipes/)      |
+| Templates   | [`templates/`](./templates/)  |
 
-Ese archivo es la tarea. No hay otro spec paralelo.
+Claude Code (Mac): abrir `BRIEF.md` e implementar **desde** `tokens/*.json`.
 
-## Este PR (docs)
+## Este PR
 
-Solo documentación. Revisar el diff de markdown. No hace falta preview de la web.
+Solo docs/JSON. Revisar el diff. Preview de la web no hace falta.
