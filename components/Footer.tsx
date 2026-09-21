@@ -101,6 +101,14 @@ export default function Footer() {
               <ul className="space-y-2">
                 <li>
                   <Link
+                    href="/marca"
+                    className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
+                  >
+                    La marca
+                  </Link>
+                </li>
+                <li>
+                  <Link
                     href="/acerca-de"
                     className="text-alma-dorado-oscuro/90 hover:text-alma-dorado-claro transition-colors text-sm"
                   >

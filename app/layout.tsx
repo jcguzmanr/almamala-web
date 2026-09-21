@@ -1,7 +1,20 @@
 import type { Metadata } from "next";
+import { Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
 import Footer from "@/components/Footer";
+
+const outfit = Outfit({
+  subsets: ["latin"],
+  variable: "--font-sans",
+  display: "swap",
+});
+
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  variable: "--font-serif",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Alma Mala | Desde Mala, Perú",
@@ -32,8 +45,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
-      <body className="antialiased text-alma-dorado-oscuro flex flex-col min-h-screen">
+    <html lang="es" className={`${outfit.variable} ${fraunces.variable}`}>
+      <body className="flex min-h-screen flex-col font-sans text-alma-dorado-oscuro antialiased">
         <CartProvider>
           {children}
           <Footer />

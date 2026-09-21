@@ -129,16 +129,121 @@
   .scale-102 {
     transform: scale(1.02);
   }
-  
+
+  .glass-panel {
+    background: rgba(246, 244, 239, 0.07);
+    border: 1px solid rgba(214, 170, 76, 0.28);
+    box-shadow: 0 12px 40px rgba(6, 47, 60, 0.28);
+    backdrop-filter: blur(8px) saturate(140%);
+    -webkit-backdrop-filter: blur(8px) saturate(140%);
+  }
+
+  .marca-hero-glow {
+    background:
+      radial-gradient(ellipse 70% 55% at 50% 8%, rgba(255, 215, 122, 0.16), transparent 58%),
+      radial-gradient(ellipse 90% 50% at 50% 100%, rgba(31, 78, 74, 0.55), transparent 70%);
+  }
+
+  .skip-link {
+    position: absolute;
+    left: 1rem;
+    top: -3rem;
+    z-index: 50;
+    border-radius: 9999px;
+    background: #d6aa4c;
+    color: #062f3c;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  .skip-link:focus {
+    top: 1rem;
+    outline: 2px solid #ffd77a;
+    outline-offset: 2px;
+  }
+
+  .brand-mark__halo {
+    position: absolute;
+    inset: -18%;
+    border-radius: 50%;
+    background: conic-gradient(
+      from 0deg,
+      transparent 0deg,
+      rgba(255, 215, 122, 0.22) 40deg,
+      transparent 90deg,
+      rgba(214, 170, 76, 0.18) 180deg,
+      transparent 230deg,
+      rgba(255, 215, 122, 0.16) 300deg,
+      transparent 360deg
+    );
+    animation: sun-rotate 28s linear infinite;
+    pointer-events: none;
+  }
+
+  .brand-mark__glow {
+    position: absolute;
+    inset: 6%;
+    z-index: 0;
+    border-radius: 50%;
+    background: radial-gradient(
+      circle,
+      rgba(255, 215, 122, 0.42) 0%,
+      rgba(214, 170, 76, 0.18) 42%,
+      transparent 70%
+    );
+    animation: sun-breathe 6.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  @keyframes sun-rotate {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  @keyframes sun-breathe {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 0.45;
+    }
+    50% {
+      transform: scale(1.08);
+      opacity: 0.75;
+    }
+  }
+
   /* Hide scrollbar for Chrome, Safari and Opera */
   .scrollbar-hide::-webkit-scrollbar {
     display: none;
   }
-  
+
   /* Hide scrollbar for IE, Edge and Firefox */
   .scrollbar-hide {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
+  }
+}
+
+@media (min-width: 768px) {
+  .glass-panel {
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-mark__halo,
+  .brand-mark__glow,
+  .animate-shimmer,
+  .animate-fade-in,
+  .animate-pulse-subtle,
+  .animate-bounce-subtle {
+    animation: none !important;
   }
 }
 

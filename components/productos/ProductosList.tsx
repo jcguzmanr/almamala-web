@@ -40,6 +40,18 @@ export default function ProductosList() {
     }
   }, []);
 
+  useEffect(() => {
+    if (loading || productos.length === 0) return;
+    const hash = window.location.hash.replace("#", "");
+    if (!hash) return;
+    const element = document.getElementById(hash);
+    if (!element) return;
+    const headerOffset = 100;
+    const top = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    window.scrollTo({ top, behavior: reduceMotion ? "auto" : "smooth" });
+  }, [loading, productos.length]);
+
   if (loading) {
     return (
       <div className="flex flex-col justify-center items-center min-h-[400px] gap-4">
