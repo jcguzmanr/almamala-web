@@ -1,0 +1,42 @@
+{
+  "$description": "Escala de tipo Alma Mala. No copiar la tipografía de otra marca. Hoy el repo no carga webfont (solo antialiased + stack del sistema).",
+  "family": {
+    "sans": [
+      "ui-rounded",
+      "ui-sans-serif",
+      "-apple-system",
+      "system-ui",
+      "sans-serif"
+    ],
+    "note": "Stack de sistema, lectura tipo menú. En Mac se acerca a SF. Si se añade webfont: una sola familia neutra/redondeada, 2–3 pesos, tokenizada en Tailwind. Prohibido traer la font de otro brand system."
+  },
+  "scale": {
+    "display": {
+      "size": "2rem",
+      "weight": 700,
+      "use": "nombre de uva / producto"
+    },
+    "title": {
+      "size": "1.125rem",
+      "weight": 600,
+      "use": "formato (500 ml, 750 ml, Damajuana 4 L) y títulos de sección"
+    },
+    "body": {
+      "size": "1rem",
+      "weight": 400,
+      "use": "una línea de apoyo. No párrafos de ensayo en el bloque de producto"
+    },
+    "price": {
+      "size": "1.25rem",
+      "weight": 700,
+      "features": ["tabular-nums"],
+      "color": "alma-dorado-oscuro",
+      "use": "precio tal cual en productos.json (S/ 22, etc.)"
+    },
+    "meta": {
+      "size": "0.875rem",
+      "weight": 400,
+      "use": "ABV, disfrútalo en, textos secundarios"
+    }
+  }
+}

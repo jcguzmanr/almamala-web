@@ -1,0 +1,14 @@
+{
+  "$description": "El flujo de venta no se rediseña ni se cambia el número. Solo se pintan tokens Alma cuando toque layout.",
+  "id": "checkout-whatsapp",
+  "doNotChange": [
+    "flujo catálogo → carrito → 3 pasos → POST /api/orders → openWhatsApp",
+    "texto del botón Finalizar pedido en WhatsApp",
+    "número en data/app-config.json: 924473237 / display 924 473 237 / fullNumber 51924473237",
+    "override NEXT_PUBLIC_WHATSAPP_NUMBER"
+  ],
+  "mayRestyleWithTokens": [
+    "islas gray-900 / green-700 en CartSummary y CheckoutSummary",
+    "superficies de /carrito y pasos de checkout"
+  ]
+}

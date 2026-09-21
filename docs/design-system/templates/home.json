@@ -1,0 +1,22 @@
+{
+  "$description": "Template de home. Último en implementarse. El catálogo consume tokens JSON, no hex sueltos.",
+  "id": "home-catalog",
+  "uses": ["recipes/product-menu"],
+  "structure": [
+    "header: logo (carpeta logo / public/images/logo_am.svg) + carrito",
+    "tabs existentes (Italia, Quebranta, Mosto Verde, Damajuanas) si siguen sirviendo de ancla",
+    "lista/carta de product-block",
+    "footer: depósito, horario, WhatsApp (número intacto), enlaces"
+  ],
+  "heroIs": "el pack shot, no un essay ni el logo duplicado a tamaño cartel",
+  "copyAllowed": [
+    "textos de productos.json",
+    "metadatos: Alma Mala | Desde Mala, Perú / destilado trabajado con respeto por la uva, el proceso y el territorio",
+    "acerca-de ya escrito"
+  ],
+  "copyForbidden": [
+    "claims DO / Denominación de Origen",
+    "premiar o certificar lo que el repo no dice",
+    "rellenar lorem de páginas legales con marca nueva"
+  ]
+}

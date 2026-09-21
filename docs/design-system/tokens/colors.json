@@ -1,0 +1,67 @@
+{
+  "$description": "Única paleta Alma Mala. Hex tomados de tailwind.config.js. La implementación debe consumir este JSON (Tailwind + CSS variables). No inventar colores.",
+  "sourceOfTruth": "tailwind.config.js",
+  "alsoPresentIn": ["colors.json"],
+  "colors": {
+    "alma-verde-profundo": {
+      "hex": "#062F3C",
+      "hsl": "194.4 81.8% 12.9%",
+      "role": "identidad, fondo, foreground sobre dorado"
+    },
+    "alma-verde-seco": {
+      "hex": "#1F4E4A",
+      "hsl": "174.9 43.1% 21.4%",
+      "role": "superficie secundaria, bloques, footer suave"
+    },
+    "alma-dorado-oscuro": {
+      "hex": "#D6AA4C",
+      "hsl": "40.9 62.7% 56.9%",
+      "role": "primary, CTA, precio, borde"
+    },
+    "alma-dorado-claro": {
+      "hex": "#FFD77A",
+      "hsl": "42.0 100.0% 73.9%",
+      "role": "accent, hover, highlight"
+    },
+    "alma-negro-carbon": {
+      "hex": "#1A1A1A",
+      "hsl": "0 0% 10.2%",
+      "role": "texto sobre dorados, neutro oscuro"
+    },
+    "alma-blanco-hueso": {
+      "hex": "#F6F4EF",
+      "hsl": "42.9 28.0% 95.1%",
+      "role": "ficha, fondo de pack shot, lectura"
+    }
+  },
+  "aliases": {
+    "primary": {
+      "value": "alma-dorado-oscuro",
+      "foreground": "alma-verde-profundo"
+    },
+    "secondary": {
+      "value": "alma-verde-seco",
+      "foreground": "alma-dorado-claro"
+    },
+    "accent": {
+      "value": "alma-dorado-claro",
+      "foreground": "alma-verde-profundo"
+    },
+    "background": {
+      "value": "alma-verde-profundo"
+    },
+    "foreground": {
+      "value": "alma-dorado-oscuro"
+    },
+    "card": {
+      "value": "alma-blanco-hueso",
+      "foreground": "alma-verde-profundo"
+    }
+  },
+  "doNotUse": [
+    "slate/gray por defecto de shadcn en app/globals.css",
+    "gray-900",
+    "green-700",
+    "cualquier hex que no esté en colors"
+  ]
+}

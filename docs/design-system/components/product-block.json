@@ -1,0 +1,25 @@
+{
+  "$description": "Componente de SKU. Consume tokens. No se codea en este PR de docs.",
+  "id": "product-block",
+  "consumes": ["tokens/colors.json", "tokens/typography.json", "tokens/spacing.json"],
+  "mapsFrom": ["components/productos/PresentacionItem.tsx", "components/productos/ProductoCard.tsx"],
+  "required": [
+    "pack shot grande (next/image, object-contain)",
+    "tipo de pisco",
+    "formato",
+    "precio",
+    "una línea de apoyo (disfrutaloEn o primera frase de descripcion)",
+    "cantidad + Agregar (misma semántica de CartContext; no romper productoId / volumen / imagen)"
+  ],
+  "sensorial": "nose / taste / finish / cocktails secundarios (desplegable o meta). ABV opcional en meta. No competir con la foto.",
+  "images": {
+    "500 ml": "/images/500ML.png",
+    "750 ml": "/images/750ML.png",
+    "damajuana 4L": "/images/DAMAJUANA.png"
+  },
+  "imageRules": [
+    "Un solo modelo físico de botella. Italia, Quebranta y Mosto Verde 500 ml = la misma 500ML.png. Igual para 750.",
+    "Las tres damajuanas = la misma DAMAJUANA.png. Distingue la uva el label, no la foto.",
+    "No hay asset 250 ml. No inventar un render Quebranta."
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "$description": "Receta visual: bloque tipo carta (método ITSU, tokens Alma). No es un clon de ITSU.",
+  "id": "product-menu",
+  "uses": ["components/product-block"],
+  "direction": {
+    "like": "ITSU: foto de producto grande, pocos colores, fila de menú, sin ensayo de marca",
+    "with": "verdes y dorados de tokens/colors.json; formatos 500 ml, 750 ml, damajuana 4 L"
+  },
+  "layout": [
+    "foto héroe (spacing.productImage)",
+    "display: nombre de uva",
+    "title: formato",
+    "price: tokens.typography.scale.price + alias primary",
+    "body: una línea",
+    "CTA Agregar: alma-dorado-oscuro sobre alma-verde-profundo"
+  ],
+  "not": [
+    "manifiesto coredrives en el bloque",
+    "párrafo largo de ProductoCard como héroe",
+    "thumbnail 96–128 px",
+    "paleta de otra marca"
+  ]
+}

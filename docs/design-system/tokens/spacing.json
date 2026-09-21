@@ -1,0 +1,29 @@
+{
+  "$description": "Escala de espacio y radio. Implementar como tokens Tailwind/CSS. No rediseñar páginas en el PR de docs.",
+  "base": 8,
+  "unit": "px",
+  "scale": {
+    "1": 8,
+    "2": 16,
+    "3": 24,
+    "4": 32,
+    "5": 48,
+    "6": 64
+  },
+  "radius": {
+    "sm": "0.25rem",
+    "md": "0.5rem",
+    "lg": "0.75rem",
+    "note": "Hoy --radius en globals.css es 0.5rem. Unificar; no inventar radios por componente."
+  },
+  "layout": {
+    "contentMaxWidth": "72rem",
+    "pagePadding": { "mobile": 16, "desktop": 32 }
+  },
+  "productImage": {
+    "role": "héroe del bloque, no thumbnail",
+    "minHeight": { "mobile": "16rem", "desktop": "20rem" },
+    "objectFit": "contain",
+    "avoid": "w-24 h-32 / md:w-32 md:h-40 (tamaño actual en PresentacionItem)"
+  }
+}
