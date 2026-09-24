@@ -10,7 +10,7 @@ export default function CheckoutSteps({ currentStep }: CheckoutStepsProps) {
   const steps = [
     { number: 1, label: "Carrito", showWhatsApp: false },
     { number: 2, label: "Info de Envío", showWhatsApp: false },
-    { number: 3, label: "Revisa y paga", showWhatsApp: true },
+    { number: 3, label: "Paga y envía", showWhatsApp: true },
   ];
 
   return (

@@ -3,6 +3,7 @@ import { Fraunces, Outfit } from "next/font/google";
 import "./globals.css";
 import { CartProvider } from "@/contexts/CartContext";
 import Footer from "@/components/Footer";
+import AgeVerification from "@/components/AgeVerification";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="es" className={`${outfit.variable} ${fraunces.variable}`}>
       <body className="flex min-h-screen flex-col font-sans text-alma-dorado-oscuro antialiased">
         <CartProvider>
+          <AgeVerification />
           {children}
           <Footer />
         </CartProvider>

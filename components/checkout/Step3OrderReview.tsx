@@ -4,12 +4,24 @@ import { useCart } from "@/contexts/CartContext";
 import { formatPrice } from "@/lib/cart";
 import { CART_TEXTS } from "@/constants/texts";
 import InfoMessages from "./InfoMessages";
-import { processCheckout } from "@/lib/checkout-flow";
+import PaymentReceiptUpload from "./PaymentReceiptUpload";
+import { processCheckout, type CheckoutResult } from "@/lib/checkout-flow";
+import { sendOrderWithReceipt } from "@/lib/whatsapp-message";
+import { validateReceiptFile } from "@/lib/receipt";
 import type { ShippingOption, LimaZone, BottleReturn } from "@/types/checkout";
 import type { ShippingInfo } from "@/types/checkout";
 import { ZONE_PRICES } from "@/types/checkout";
 import { getWhatsAppNumber } from "@/lib/app-config";
 import { useState } from "react";
+
+export type CompletedCheckout = {
+  orderId: string;
+  method: NonNullable<CheckoutResult["method"]>;
+  fileIncluded: boolean;
+  message: string;
+  receipt: File;
+  whatsappNumber: string;
+};
 
 interface Step3OrderReviewProps {
   shippingOption: ShippingOption;
@@ -18,6 +30,7 @@ interface Step3OrderReviewProps {
   limaZone?: LimaZone;
   bottleReturns?: BottleReturn[];
   onBack: () => void;
+  onComplete: (result: CompletedCheckout) => void;
 }
 
 export default function Step3OrderReview({
@@ -27,10 +40,17 @@ export default function Step3OrderReview({
   limaZone,
   bottleReturns = [],
   onBack,
+  onComplete,
 }: Step3OrderReviewProps) {
-  const { items, getSubtotal, clearCart } = useCart();
+  const { items, getSubtotal } = useCart();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [receiptFile, setReceiptFile] = useState<File | null>(null);
+  const [pendingHandoff, setPendingHandoff] = useState<{
+    orderId: string;
+    message: string;
+    receipt: File;
+  } | null>(null);
   const subtotal = getSubtotal();
   
   // Calcular costo de envío según la zona
@@ -75,18 +95,49 @@ export default function Step3OrderReview({
   };
 
   const handleFinalizeOrder = async () => {
-    setLoading(true);
     setError(null);
+
+    const receiptCheck = validateReceiptFile(receiptFile);
+    if (!receiptCheck.ok || !receiptFile) {
+      setError(
+        receiptCheck.ok
+          ? "Sube el comprobante de pago antes de enviar el pedido."
+          : receiptCheck.error
+      );
+      return;
+    }
 
     const whatsappNumber = getWhatsAppNumber();
 
     if (!whatsappNumber) {
       setError("Número de WhatsApp no configurado");
-      setLoading(false);
       return;
     }
 
+    setLoading(true);
+
     try {
+      if (pendingHandoff) {
+        const handoff = await sendOrderWithReceipt(
+          whatsappNumber,
+          pendingHandoff.message,
+          pendingHandoff.receipt
+        );
+        if (handoff.cancelled) {
+          setError("Cancelaste el envío a WhatsApp. Puedes intentar de nuevo.");
+          return;
+        }
+        onComplete({
+          orderId: pendingHandoff.orderId,
+          method: handoff.method,
+          fileIncluded: handoff.fileIncluded,
+          message: pendingHandoff.message,
+          receipt: pendingHandoff.receipt,
+          whatsappNumber,
+        });
+        return;
+      }
+
       const result = await processCheckout(
         items,
         shippingOption,
@@ -94,13 +145,29 @@ export default function Step3OrderReview({
         whatsappNumber,
         limaZone,
         shippingInfo,
-        bottleReturnDiscount
+        bottleReturnDiscount,
+        receiptFile
       );
 
-      if (result.success) {
-        // Resetear el carrito después de enviar exitosamente
-        clearCart();
-        // El WhatsApp ya se abrió en processCheckout
+      if (result.cancelled && result.orderId && result.message && result.receipt) {
+        setPendingHandoff({
+          orderId: result.orderId,
+          message: result.message,
+          receipt: result.receipt,
+        });
+        setError(result.error || "Cancelaste el envío a WhatsApp. Puedes intentar de nuevo.");
+        return;
+      }
+
+      if (result.success && result.orderId && result.method && result.message && result.receipt) {
+        onComplete({
+          orderId: result.orderId,
+          method: result.method,
+          fileIncluded: Boolean(result.fileIncluded),
+          message: result.message,
+          receipt: result.receipt,
+          whatsappNumber,
+        });
       } else {
         setError(result.error || "Error al procesar el pedido");
       }
@@ -219,8 +286,15 @@ export default function Step3OrderReview({
       {/* Mensajes informativos */}
       <InfoMessages />
 
-      {/* Error */}
-      {error && (
+      <PaymentReceiptUpload
+        file={receiptFile}
+        onFileChange={setReceiptFile}
+        error={error && !receiptFile ? error : null}
+        onErrorClear={() => setError(null)}
+      />
+
+      {/* Error de envío (cuando ya hay comprobante) */}
+      {error && receiptFile && (
         <div className="p-4 bg-red-50 border border-red-200 rounded-md">
           <p className="text-sm text-red-700">{error}</p>
         </div>
@@ -253,9 +327,7 @@ export default function Step3OrderReview({
             className="flex-1 px-6 py-4 bg-alma-dorado-oscuro text-alma-verde-profundo rounded-md font-semibold text-lg hover:bg-alma-dorado-claro hover:text-alma-verde-profundo disabled:bg-alma-verde-seco/50 disabled:text-alma-dorado-oscuro/50 disabled:cursor-not-allowed transition-colors flex items-center justify-center gap-2"
           >
             {loading ? (
-              <>
-                <span>Procesando...</span>
-              </>
+              <span>Enviando pedido...</span>
             ) : (
               <>
                 {CART_TEXTS.checkout.button} - {formatPrice(total)}

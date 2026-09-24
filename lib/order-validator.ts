@@ -79,6 +79,15 @@ export function validateOrderPayload(payload: OrderPayload): ValidationResult {
     errors.push("Metadata inválida");
   }
 
+  if (payload.receipt) {
+    if (!payload.receipt.fileName) {
+      errors.push("El comprobante no tiene nombre de archivo");
+    }
+    if (typeof payload.receipt.size !== "number" || payload.receipt.size <= 0) {
+      errors.push("El tamaño del comprobante es inválido");
+    }
+  }
+
   return {
     valid: errors.length === 0,
     errors,

@@ -2,12 +2,22 @@ import type { CartItem } from "@/types/cart";
 import type { ShippingOption, LimaZone, ShippingInfo } from "@/types/checkout";
 import type { OrderPayload } from "@/types/order";
 import { buildOrderPayload } from "./order-builder";
-import { buildWhatsAppMessage, openWhatsApp } from "./whatsapp-message";
+import { receiptMetadata, renameReceiptFile, validateReceiptFile } from "./receipt";
+import {
+  buildWhatsAppMessage,
+  sendOrderWithReceipt,
+  type WhatsAppHandoffMethod,
+} from "./whatsapp-message";
 
 export type CheckoutResult = {
   success: boolean;
   orderId?: string;
   error?: string;
+  cancelled?: boolean;
+  method?: WhatsAppHandoffMethod;
+  fileIncluded?: boolean;
+  message?: string;
+  receipt?: File;
 };
 
 /**
@@ -20,11 +30,23 @@ export async function processCheckout(
   whatsappNumber: string,
   limaZone: LimaZone | undefined,
   shippingInfo?: ShippingInfo,
-  bottleReturnDiscount: number = 0
+  bottleReturnDiscount: number = 0,
+  receiptFile?: File | null
 ): Promise<CheckoutResult> {
   try {
+    const receiptCheck = validateReceiptFile(receiptFile);
+    if (!receiptCheck.ok || !receiptFile) {
+      return {
+        success: false,
+        error: receiptCheck.ok
+          ? "Sube el comprobante de pago antes de enviar el pedido."
+          : receiptCheck.error,
+      };
+    }
+
     // Construir payload
     const payload = buildOrderPayload(cartItems, shippingOption, couponCode, limaZone);
+    payload.receipt = receiptMetadata(receiptFile);
 
     // Registrar pedido en backend
     const response = await fetch("/api/orders", {
@@ -60,14 +82,35 @@ export async function processCheckout(
       departamento: "",
     };
     
-    const message = buildWhatsAppMessage(payload, orderId, defaultShippingInfo, bottleReturnDiscount);
+    const namedReceipt = renameReceiptFile(receiptFile, orderId);
+    const message = buildWhatsAppMessage(
+      payload,
+      orderId,
+      defaultShippingInfo,
+      bottleReturnDiscount,
+      namedReceipt.name
+    );
 
-    // Abrir WhatsApp
-    openWhatsApp(whatsappNumber, message);
+    const handoff = await sendOrderWithReceipt(whatsappNumber, message, namedReceipt);
+
+    if (handoff.cancelled) {
+      return {
+        success: false,
+        cancelled: true,
+        orderId,
+        error: "Cancelaste el envío a WhatsApp. El pedido quedó registrado; puedes intentar de nuevo.",
+        message,
+        receipt: namedReceipt,
+      };
+    }
 
     return {
       success: true,
       orderId,
+      method: handoff.method,
+      fileIncluded: handoff.fileIncluded,
+      message,
+      receipt: namedReceipt,
     };
   } catch (error) {
     console.error("Error en checkout:", error);

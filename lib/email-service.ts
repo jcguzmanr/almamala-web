@@ -47,6 +47,12 @@ function buildEmailContent(orderId: string, payload: OrderPayload): string {
   }
 
   content += `TOTAL: ${formatPrice(payload.total)}\n`;
+  if (payload.receipt) {
+    content += `\n`;
+    content += `COMPROBANTE:\n`;
+    content += `${payload.receipt.fileName} (${payload.receipt.mimeType}, ${payload.receipt.size} bytes)\n`;
+    content += `El archivo viaja por WhatsApp con el cliente; aquí solo queda la referencia.\n`;
+  }
   content += `\n`;
 
   return content;
